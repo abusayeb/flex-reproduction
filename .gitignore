@@ -6,3 +6,6 @@ __pycache__/
 *.log
 # the report is sent separately; main.py saves the figures here
 report/
+
+# editor settings
+.vscode/
