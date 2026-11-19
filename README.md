@@ -79,7 +79,6 @@ scripts/          run_rq1, run_op_errors, run_ext, make_figures
 tests/            unit tests
 cache/            saved LLM replies
 results/          outputs of the experiments
-report/           the three figures, created when main.py runs
 ```
 
 ## Things I had to decide myself
