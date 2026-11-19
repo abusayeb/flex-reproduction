@@ -1,0 +1,9 @@
+__pycache__/
+.pytest_cache/
+.venv/
+.DS_Store
+*.aux
+*.log
+# the report is kept as a PDF only
+report/report.tex
+report/report.docx
