@@ -98,6 +98,6 @@ Some details are not given in the paper, so I have chosen these:
 
 ## Not done yet
 
-- Full Table 1 with a real LLM (it takes several hours with Gemma 4 on my laptop)
+- Full Table 1 with a real LLM 
 - Running GPT-4o itself
 - RQ2 on the Franka arm
