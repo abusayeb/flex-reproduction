@@ -1,11 +1,9 @@
 # The three report figures, drawn from the files in results/.
 import json
-
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import numpy as np
-
 from flex import irl
 from flex.config import DELTA, DEMO_SEED_OFFSET, N_DEMOS, REPORT_DIR, RESULTS_DIR
 from flex.editing import METHODS, Context
@@ -24,10 +22,8 @@ GPT4O_PAPER = [8.6, 5.7, 3.8]
 plt.rcParams.update({'font.size': 9, 'axes.spines.top': False, 'axes.spines.right': False,
                      'axes.edgecolor': '#888888'})
 
-
 def load(name):
     return json.loads((RESULTS_DIR / name).read_text())
-
 
 def fig_example():
     # ALGAE vs FLEX on kitchen Gen. Only, on the layout where ALGAE does worst
@@ -67,7 +63,6 @@ def fig_example():
     fig.tight_layout()
     fig.savefig(REPORT_DIR / 'fig_example.png', dpi=220, bbox_inches='tight')
 
-
 def fig_op_errors():
     edits = ['add', 'generalize', 'mask']
     labels, rates, colors = [], [], []
@@ -95,7 +90,6 @@ def fig_op_errors():
     ax.legend(ncol=4, fontsize=7.5, frameon=False, loc='upper center', bbox_to_anchor=(0.5, 1.16))
     fig.tight_layout()
     fig.savefig(REPORT_DIR / 'fig_op_errors.png', dpi=220, bbox_inches='tight')
-
 
 def fig_delta():
     # wrong decisions and questions asked as delta changes
@@ -128,7 +122,6 @@ def fig_delta():
     ax.legend(frameon=False, fontsize=8, loc='upper left', bbox_to_anchor=(0.02, 1.0))
     fig.tight_layout()
     fig.savefig(REPORT_DIR / 'fig_delta.png', dpi=220, bbox_inches='tight')
-
 
 def main():
     REPORT_DIR.mkdir(exist_ok=True)

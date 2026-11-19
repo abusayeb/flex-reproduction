@@ -15,7 +15,6 @@ SCENARIOS = {
     'Mask+Gen.': ({'mask', 'generalize'}, ['goal', 'mentioned', 'distractor']),
     'All Three': ({'add', 'generalize', 'mask'}, ['goal', 'distractor']),
 }
-
 @dataclass
 class Scenario:
     world: str

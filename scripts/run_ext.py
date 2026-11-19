@@ -1,6 +1,5 @@
 # Table 2: FLEX against FLEX-V on standard and personal-preference scenarios.
 import numpy as np
-
 from flex.config import N_DEMOS
 from flex.editing import flex
 from flex.experiment import file_tag, markdown_table, mean_and_error, run_one, save_results
@@ -11,7 +10,6 @@ from flex.scenarios import all_scenarios, personal_scenarios
 METHODS = {'FLEX': flex, 'FLEX-V': flex_v}
 GENERAL_PROPERTIES = ('heat_source', 'dangerous_terrain')
 
-
 def kept_general_feature(row):
     for name in row['features']:
         for prop in GENERAL_PROPERTIES:
@@ -19,17 +17,14 @@ def kept_general_feature(row):
                 return True
     return False
 
-
 def summary_row(kind, method, rows):
     kept = np.mean([kept_general_feature(r) for r in rows])
     asked = np.mean([r['asked'] for r in rows])
     return [kind, method, mean_and_error([r['score'] for r in rows]), mean_and_error([r['transfer'] for r in rows]),
             f'{asked:.2f}', f'{kept:.0%}']
 
-
 def main(llm='oracle', seeds=5, demos=N_DEMOS, kinds=('standard', 'personal'), temperature=0.0):
     spec, llm, kinds = llm, make_llm(llm, temperature), list(kinds)
-
     scenarios = []
     if 'standard' in kinds:
         scenarios += [('standard', s) for s in all_scenarios() if 'generalize' in s.ops]

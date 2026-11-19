@@ -45,4 +45,4 @@
 | USF | 0.64 | 0.72 | 0.90 | 0.80 | 0.99 | 0.78 | 0.78 |
 | FLEX | 1.00 | 0.91 | 1.00 | 1.00 | 1.00 | 1.00 | 0.99 |
 
-LLM calls: 1360 new, 0 cached. Code fallbacks: 0. Dropped features: 0. Runtime 18s.
+LLM calls: 1360 new, 0 cached. Code fallbacks: 0. Dropped features: 0. Runtime 27s.

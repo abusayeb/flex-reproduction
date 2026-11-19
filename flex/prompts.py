@@ -1,4 +1,4 @@
-# Prompts from the paper's appendix (7.1-7.2). Keep them exact: the LLM cache is keyed on the text.
+# Prompts from the paper's appendix (7.1-7.2). Kept them exact: the LLM cache is keyed on the text.
 SYSTEM_2D = """An agent is in a 2D gridworld environment of size 9x9. (0,0) is the top left corner and (8, 8) is the bottom right corner (note this is not a typical coordinate grid).
 The environment config has the following attributes:
   X (int): width of the environment

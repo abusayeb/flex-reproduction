@@ -9,10 +9,8 @@ EDITS = {'add': add, 'generalize': generalize, 'mask': mask}
 PAPER = {'add': '8.6%', 'generalize': '5.7%', 'mask': '3.8%'}
 DEFAULT_SEEDS = list(range(5, 20))
 
-
 def properties(features, env):
     return sorted(str(property_of(f, env)) for f in features)
-
 
 def expected(edit, scenario, before):
     # the properties after a correct edit
@@ -25,7 +23,6 @@ def expected(edit, scenario, before):
         after = [p for p in after if p != scenario.distractor]
     return sorted(after)
 
-
 def is_contradictory(edit, scenario, context):
     # Add says NO NEW FEATURE but names the missing object in its reason
     if edit != 'add' or 'add' not in scenario.ops:
@@ -35,7 +32,6 @@ def is_contradictory(edit, scenario, context):
             reply = entry['reply']
             return 'NO NEW FEATURE' in reply.upper() and scenario.mentioned in reply.lower()
     return False
-
 
 def run_trial(edit, scenario, seed, llm):
     env = scenario.env(seed)
@@ -49,7 +45,6 @@ def run_trial(edit, scenario, seed, llm):
     want = expected(edit, scenario, before)
     return {'op': edit, 'scenario': scenario.name, 'seed': seed, 'init': before, 'got': got, 'want': want,
             'error': got != want, 'contradictory': is_contradictory(edit, scenario, context)}
-
 
 def main(llm='oracle', seeds=DEFAULT_SEEDS, temperature=0.0):
     spec, llm, seeds = llm, make_llm(llm, temperature), list(seeds)
