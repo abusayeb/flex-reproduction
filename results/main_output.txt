@@ -1,0 +1,44 @@
+FLEX reproduction (Lee et al., CoRL 2026), 2D navigation
+Score = normalized reward, 1.00 = best path. "ok" = same as in report/report.pdf.
+
+0. IRL with fixed features, no LLM (Gen. Only, 2 worlds x 5 layouts)
+  Demo score                            0.98        ok      expected 0.9-1
+  Learned weights, heat source : goal   7.8 : 1     ok      true 8 : 1
+  Score, goal + heat source             1.00        ok      expected 1.00
+  Score, goal + stove                   0.88        ok      expected in between
+  Score, goal only                      0.67        ok      expected < 0.8
+
+1. Table 1, oracle LLM (7 scenarios x 2 worlds x 5 layouts)
+                              paper       train       new layout  
+  ALGAE                       0.75        0.94        0.86        ok
+  MFE                         0.76        1.00        0.86        ok
+  USF                         0.80        1.00        1.00        ok
+  FLEX                        0.99        1.00        0.94        ok
+  FLEX, 3 demos               -           1.00        0.93        ok
+  Scenarios with Generalize, new layout:
+    ALGAE                     0.86        ok
+    FLEX                      0.99        ok
+
+2. Error rate per operation, Fig. 2 (7 scenarios x 3 layouts = 21 trials)
+                              add         generalize  mask        
+  Oracle                      0%          0%          0%          ok
+  Qwen 2.5 7B                 57%         29%         57%         ok
+  Qwen 2.5 14B                57%         62%         57%         ok
+  Gemma 4 26B                 0%          14%         14%         ok
+  GPT-4o (paper)              8.6%        5.7%        3.8%        
+
+3. Table 2, personal preferences: FLEX vs FLEX-V
+                              train       new layout  
+  Oracle, FLEX                1.00        1.00        ok
+  Oracle, FLEX-V              1.00        1.00        ok
+  Over-general oracle, FLEX   0.99        0.94        ok
+  Over-general oracle, FLEX-V 1.00        1.00        ok
+  Gemma 4 26B, FLEX           0.88        0.94        ok
+  Gemma 4 26B, FLEX-V         0.97        0.94        ok
+
+4. Figures
+  Saved report/fig_example.png, fig_op_errors.png, fig_delta.png
+
+LLM replies: 475/475 from cache/
+All numbers match the report.
+Done in 63s

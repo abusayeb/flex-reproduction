@@ -1,0 +1,1039 @@
+[
+ {
+  "world": "kitchen",
+  "scenario": "Personal/Add Only",
+  "seed": 0,
+  "method": "FLEX",
+  "score": 1.0,
+  "transfer": 0.9433628929083051,
+  "features": [
+   "distance_to_goal",
+   "distance_to_kettle"
+  ],
+  "sources": [
+   "builtin",
+   "lm"
+  ],
+  "theta": [
+   -0.8227,
+   0.5188
+  ],
+  "error": null,
+  "fallbacks": 0,
+  "dropped": 0,
+  "log": [
+   {
+    "tag": "add",
+    "prompt": "(e.g. if distance to goal feature is already in the list, do not give distance to goal again). Ground your answer in visible objects in the scene, and give an answer (only 1 specific answer (e.g. distance to heavy objects)) that we can compute relative to the position of the agent.\nFollow your answer with one newline and at most one sentence of explanation with specific references to the addendum.",
+    "reply": "distance_to_kettle\nThe addendum \"Stay away from the kettle\" implies that the agent's proximity to the kettle is relevant to the task."
+   },
+   {
+    "tag": "codegen",
+    "prompt": "_utils import get_objects_with_property\ndef feature_name(environment, trajectory):\n    ...\n    return feat_val\n```\nPlease ensure the code is executable. Make sure your code is generalizable to new environments. Don't assume you are given any other information about the environment other than what is explicitly specified in the environment config. Do not include any surrounding explanation or text.",
+    "reply": "Feature name: \"distance_to_kettle\"\nFeature code:\n```python\nimport numpy as np\nfrom flexible_features.utils.env_utils import get_objects_with_property\n\ndef distance_to_kettle(environment, trajectory):\n    # Get the positions of all objects with the type/property \"kettle\"\n    kettle_positions = get_objects_with_property(\"kettle\", environment)\n    # Initialize the feature value as a numpy array\n    kettle_feat = np.zeros(1, dtype=np.float64)\n    \n    # If no kettle is found, return the zeroed array\n    if len(kettle_positions) == 0:\n        return kettle_feat\n\n    # Iterate through the trajectory in steps of 2 (x, y pairs)\n    for i in range(0, len(trajectory) - 1, 2):\n        agent_x = trajectory[i]\n        agent_y = trajectory[i+1]\n        # Iterate through all kettle objects found\n        for kettle_pos in kettle_positions:\n            # Calculate the Euclidean distance between the agent and the kettle\n            dx = agent_x - kettle_pos[0]\n            dy = agent_y - kettle_pos[1]\n            dist = np.linalg.norm([dx, dy])\n            # Accumulate the distance\n            kettle_feat[0] += dist\n            \n    # Average the accumulated distance over the number of kettle objects\n    kettle_feat[0] /= len(kettle_positions)\n    \n    return kettle_feat\n```"
+   },
+   {
+    "tag": "intent",
+    "prompt": "om the kettle.\n\nExtract the intent behind the human's addendum in at most 2 sentences, explaining the purpose or reasoning behind the addendum. Focus on what the agent needs to achieve and why the human may have said this particular addendum, including any important context or conditions that affect the task. Do not base the explanation on specific locations, as this may change in later scenarios.",
+    "reply": "The agent needs to navigate to the goal while ensuring it avoids contact with or proximity to the kettle. This addendum introduces a specific constraint to the original task, requiring the agent to plan a path that treats the kettle as an obstacle to be avoided."
+   },
+   {
+    "tag": "generalize",
+    "prompt": "emantic relevance should be generalized to the same name. Only generalize using object properties explicitly listed in the environment.\nReturn a newline-delimited list of the original feature names, followed by \"->\", followed by either NO CHANGE or a generalized feature name. For example\nfeature_a -> feature_letter\nfeature_b -> feature_letter\nfeature_letter -> feature_letter\nfeature_1 -> NO CHANGE",
+    "reply": "distance_to_goal -> NO CHANGE\ndistance_to_kettle -> NO CHANGE"
+   },
+   {
+    "tag": "mask",
+    "prompt": "e objects the same way, even if only one of them is relevant to the instruction.\nFor example, for the instruction go to a book and the features [\"book_dist\", \"table_dist\", \"chair_dist\"], the minimal set would include only the features that refer specifically to the object mentioned in the instruction.\nProvide your answer as ONLY a single integer. Do not include any surrounding explanation or text.",
+    "reply": "1"
+   },
+   {
+    "tag": "mask",
+    "prompt": "e objects the same way, even if only one of them is relevant to the instruction.\nFor example, for the instruction go to a book and the features [\"book_dist\", \"table_dist\", \"chair_dist\"], the minimal set would include only the features that refer specifically to the object mentioned in the instruction.\nProvide your answer as ONLY a single integer. Do not include any surrounding explanation or text.",
+    "reply": "1"
+   }
+  ],
+  "kind": "personal",
+  "verify": [],
+  "asked": 0
+ },
+ {
+  "world": "kitchen",
+  "scenario": "Personal/Add Only",
+  "seed": 0,
+  "method": "FLEX-V",
+  "score": 1.0,
+  "transfer": 0.9433628929083051,
+  "features": [
+   "distance_to_goal",
+   "distance_to_kettle"
+  ],
+  "sources": [
+   "builtin",
+   "lm"
+  ],
+  "theta": [
+   -0.8227,
+   0.5188
+  ],
+  "error": null,
+  "fallbacks": 0,
+  "dropped": 0,
+  "log": [
+   {
+    "tag": "add",
+    "prompt": "(e.g. if distance to goal feature is already in the list, do not give distance to goal again). Ground your answer in visible objects in the scene, and give an answer (only 1 specific answer (e.g. distance to heavy objects)) that we can compute relative to the position of the agent.\nFollow your answer with one newline and at most one sentence of explanation with specific references to the addendum.",
+    "reply": "distance_to_kettle\nThe addendum \"Stay away from the kettle\" implies that the agent's proximity to the kettle is relevant to the task."
+   },
+   {
+    "tag": "codegen",
+    "prompt": "_utils import get_objects_with_property\ndef feature_name(environment, trajectory):\n    ...\n    return feat_val\n```\nPlease ensure the code is executable. Make sure your code is generalizable to new environments. Don't assume you are given any other information about the environment other than what is explicitly specified in the environment config. Do not include any surrounding explanation or text.",
+    "reply": "Feature name: \"distance_to_kettle\"\nFeature code:\n```python\nimport numpy as np\nfrom flexible_features.utils.env_utils import get_objects_with_property\n\ndef distance_to_kettle(environment, trajectory):\n    # Get the positions of all objects with the type/property \"kettle\"\n    kettle_positions = get_objects_with_property(\"kettle\", environment)\n    # Initialize the feature value as a numpy array\n    kettle_feat = np.zeros(1, dtype=np.float64)\n    \n    # If no kettle is found, return the zeroed array\n    if len(kettle_positions) == 0:\n        return kettle_feat\n\n    # Iterate through the trajectory in steps of 2 (x, y pairs)\n    for i in range(0, len(trajectory) - 1, 2):\n        agent_x = trajectory[i]\n        agent_y = trajectory[i+1]\n        # Iterate through all kettle objects found\n        for kettle_pos in kettle_positions:\n            # Calculate the Euclidean distance between the agent and the kettle\n            dx = agent_x - kettle_pos[0]\n            dy = agent_y - kettle_pos[1]\n            dist = np.linalg.norm([dx, dy])\n            # Accumulate the distance\n            kettle_feat[0] += dist\n            \n    # Average the accumulated distance over the number of kettle objects\n    kettle_feat[0] /= len(kettle_positions)\n    \n    return kettle_feat\n```"
+   },
+   {
+    "tag": "intent",
+    "prompt": "om the kettle.\n\nExtract the intent behind the human's addendum in at most 2 sentences, explaining the purpose or reasoning behind the addendum. Focus on what the agent needs to achieve and why the human may have said this particular addendum, including any important context or conditions that affect the task. Do not base the explanation on specific locations, as this may change in later scenarios.",
+    "reply": "The agent needs to navigate to the goal while ensuring it avoids contact with or proximity to the kettle. This addendum introduces a specific constraint to the original task, requiring the agent to plan a path that treats the kettle as an obstacle to be avoided."
+   },
+   {
+    "tag": "generalize",
+    "prompt": "emantic relevance should be generalized to the same name. Only generalize using object properties explicitly listed in the environment.\nReturn a newline-delimited list of the original feature names, followed by \"->\", followed by either NO CHANGE or a generalized feature name. For example\nfeature_a -> feature_letter\nfeature_b -> feature_letter\nfeature_letter -> feature_letter\nfeature_1 -> NO CHANGE",
+    "reply": "distance_to_goal -> NO CHANGE\ndistance_to_kettle -> NO CHANGE"
+   },
+   {
+    "tag": "mask",
+    "prompt": "e objects the same way, even if only one of them is relevant to the instruction.\nFor example, for the instruction go to a book and the features [\"book_dist\", \"table_dist\", \"chair_dist\"], the minimal set would include only the features that refer specifically to the object mentioned in the instruction.\nProvide your answer as ONLY a single integer. Do not include any surrounding explanation or text.",
+    "reply": "1"
+   },
+   {
+    "tag": "mask",
+    "prompt": "e objects the same way, even if only one of them is relevant to the instruction.\nFor example, for the instruction go to a book and the features [\"book_dist\", \"table_dist\", \"chair_dist\"], the minimal set would include only the features that refer specifically to the object mentioned in the instruction.\nProvide your answer as ONLY a single integer. Do not include any surrounding explanation or text.",
+    "reply": "1"
+   }
+  ],
+  "kind": "personal",
+  "verify": [],
+  "asked": 0
+ },
+ {
+  "world": "kitchen",
+  "scenario": "Personal/Add Only",
+  "seed": 1,
+  "method": "FLEX",
+  "score": 0.5937476411026086,
+  "transfer": 0.9410882380202675,
+  "features": [
+   "distance_to_goal"
+  ],
+  "sources": [
+   "builtin"
+  ],
+  "theta": [
+   -0.1527
+  ],
+  "error": null,
+  "fallbacks": 0,
+  "dropped": 0,
+  "log": [
+   {
+    "tag": "add",
+    "prompt": "(e.g. if distance to goal feature is already in the list, do not give distance to goal again). Ground your answer in visible objects in the scene, and give an answer (only 1 specific answer (e.g. distance to heavy objects)) that we can compute relative to the position of the agent.\nFollow your answer with one newline and at most one sentence of explanation with specific references to the addendum.",
+    "reply": "distance_to_kettle\nThe addendum \"Stay away from the kettle\" requires the agent to monitor its distance from the kettle."
+   },
+   {
+    "tag": "codegen",
+    "prompt": "_utils import get_objects_with_property\ndef feature_name(environment, trajectory):\n    ...\n    return feat_val\n```\nPlease ensure the code is executable. Make sure your code is generalizable to new environments. Don't assume you are given any other information about the environment other than what is explicitly specified in the environment config. Do not include any surrounding explanation or text.",
+    "reply": "Feature name: \"distance_to_kettle\"\nFeature code:\n```python\nimport numpy as np\nfrom flexible_features.utils.env_utils import get_objects_with_property\n\ndef distance_to_kettle(environment, trajectory):\n    # Get the positions of all kettle objects\n    kettle_positions = get_objects_with_property(\"kettle\", environment)\n    # Initialize the feature value as a numpy array of shape (1,)\n    kettle_feat = np.zeros(1, dtype=np.float64)\n    \n    if len(kettle_positions) == 0:\n        return kettle_feat\n\n    # Iterate through the trajectory in steps of 2 to get (x, y) pairs\n    for i in range(0, len(trajectory), 2):\n        agent_x = trajectory[i]\n        agent_y = trajectory[i+1]\n        \n        # Iterate through each kettle object found\n        for kettle_pos in kettle_positions:\n            # Calculate Euclidean distance between agent and the kettle\n            dx = agent_x - kettle_pos[0]\n            dy = agent_y - kettle_pos[1]\n            dist = np.sqrt(dx**2 + dy**2)\n            # Accumulate the distance\n            kettle_feat[0] += dist\n            \n    # Return the average distance to the kettle(s) over the trajectory\n    kettle_feat[0] /= len(kettle_positions)\n    return kettle_feat\n```"
+   },
+   {
+    "tag": "intent",
+    "prompt": "om the kettle.\n\nExtract the intent behind the human's addendum in at most 2 sentences, explaining the purpose or reasoning behind the addendum. Focus on what the agent needs to achieve and why the human may have said this particular addendum, including any important context or conditions that affect the task. Do not base the explanation on specific locations, as this may change in later scenarios.",
+    "reply": "The agent must navigate to the goal while ensuring it avoids the kettle. This constraint is likely intended to prevent the agent from interacting with or being affected by the heat source associated with the kettle."
+   },
+   {
+    "tag": "generalize",
+    "prompt": "emantic relevance should be generalized to the same name. Only generalize using object properties explicitly listed in the environment.\nReturn a newline-delimited list of the original feature names, followed by \"->\", followed by either NO CHANGE or a generalized feature name. For example\nfeature_a -> feature_letter\nfeature_b -> feature_letter\nfeature_letter -> feature_letter\nfeature_1 -> NO CHANGE",
+    "reply": "distance_to_goal -> NO CHANGE\ndistance_to_kettle -> distance_to_heat_source"
+   },
+   {
+    "tag": "codegen",
+    "prompt": "_utils import get_objects_with_property\ndef feature_name(environment, trajectory):\n    ...\n    return feat_val\n```\nPlease ensure the code is executable. Make sure your code is generalizable to new environments. Don't assume you are given any other information about the environment other than what is explicitly specified in the environment config. Do not include any surrounding explanation or text.",
+    "reply": "Feature name: \"distance_to_heat_source\"\nFeature code:\n```python\nimport numpy as np\nfrom flexible_features.utils.env_utils import get_objects_with_property\n\ndef distance_to_heat_source(environment, trajectory):\n    # Get the positions of all objects with the property \"heat_source\"\n    heat_source_positions = get_objects_with_property(\"heat_source\", environment)\n    \n    # If no heat sources are found, return an array containing 0.0\n    if not heat_source_positions:\n        return np.array([0.0], dtype=np.float64)\n    \n    # Initialize the cumulative distance\n    total_dist = 0.0\n    \n    # Iterate through the trajectory in steps of 2 (x, y pairs)\n    for i in range(0, len(trajectory), 2):\n        # Get the current agent position\n        agent_pos = np.array([trajectory[i], trajectory[i+1]])\n        \n        # Iterate through each heat source object\n        for obj_pos in heat_source_positions:\n            # Calculate the Euclidean distance between the agent and the object\n            dist = np.linalg.norm(agent_pos - np.array(obj_pos))\n            total_dist += dist\n            \n    # Calculate the average distance over the number of objects\n    # This follows the logic of summing all distances and dividing by the number of objects\n    feature_value = np.array([total_dist / len(heat_source_positions)], dtype=np.float64)\n    \n    return feature_value\n```"
+   },
+   {
+    "tag": "mask",
+    "prompt": "e objects the same way, even if only one of them is relevant to the instruction.\nFor example, for the instruction go to a book and the features [\"book_dist\", \"table_dist\", \"chair_dist\"], the minimal set would include only the features that refer specifically to the object mentioned in the instruction.\nProvide your answer as ONLY a single integer. Do not include any surrounding explanation or text.",
+    "reply": "1"
+   },
+   {
+    "tag": "mask",
+    "prompt": "e objects the same way, even if only one of them is relevant to the instruction.\nFor example, for the instruction go to a book and the features [\"book_dist\", \"table_dist\", \"chair_dist\"], the minimal set would include only the features that refer specifically to the object mentioned in the instruction.\nProvide your answer as ONLY a single integer. Do not include any surrounding explanation or text.",
+    "reply": "0"
+   }
+  ],
+  "kind": "personal",
+  "verify": [],
+  "asked": 0
+ },
+ {
+  "world": "kitchen",
+  "scenario": "Personal/Add Only",
+  "seed": 1,
+  "method": "FLEX-V",
+  "score": 0.9439233335915781,
+  "transfer": 0.9374608210488129,
+  "features": [
+   "distance_to_goal",
+   "distance_to_kettle"
+  ],
+  "sources": [
+   "builtin",
+   "lm"
+  ],
+  "theta": [
+   -0.9688,
+   1.1369
+  ],
+  "error": null,
+  "fallbacks": 0,
+  "dropped": 0,
+  "log": [
+   {
+    "tag": "add",
+    "prompt": "(e.g. if distance to goal feature is already in the list, do not give distance to goal again). Ground your answer in visible objects in the scene, and give an answer (only 1 specific answer (e.g. distance to heavy objects)) that we can compute relative to the position of the agent.\nFollow your answer with one newline and at most one sentence of explanation with specific references to the addendum.",
+    "reply": "distance_to_kettle\nThe addendum \"Stay away from the kettle\" requires the agent to monitor its distance from the kettle."
+   },
+   {
+    "tag": "codegen",
+    "prompt": "_utils import get_objects_with_property\ndef feature_name(environment, trajectory):\n    ...\n    return feat_val\n```\nPlease ensure the code is executable. Make sure your code is generalizable to new environments. Don't assume you are given any other information about the environment other than what is explicitly specified in the environment config. Do not include any surrounding explanation or text.",
+    "reply": "Feature name: \"distance_to_kettle\"\nFeature code:\n```python\nimport numpy as np\nfrom flexible_features.utils.env_utils import get_objects_with_property\n\ndef distance_to_kettle(environment, trajectory):\n    # Get the positions of all kettle objects\n    kettle_positions = get_objects_with_property(\"kettle\", environment)\n    # Initialize the feature value as a numpy array of shape (1,)\n    kettle_feat = np.zeros(1, dtype=np.float64)\n    \n    if len(kettle_positions) == 0:\n        return kettle_feat\n\n    # Iterate through the trajectory in steps of 2 to get (x, y) pairs\n    for i in range(0, len(trajectory), 2):\n        agent_x = trajectory[i]\n        agent_y = trajectory[i+1]\n        \n        # Iterate through each kettle object found\n        for kettle_pos in kettle_positions:\n            # Calculate Euclidean distance between agent and the kettle\n            dx = agent_x - kettle_pos[0]\n            dy = agent_y - kettle_pos[1]\n            dist = np.sqrt(dx**2 + dy**2)\n            # Accumulate the distance\n            kettle_feat[0] += dist\n            \n    # Return the average distance to the kettle(s) over the trajectory\n    kettle_feat[0] /= len(kettle_positions)\n    return kettle_feat\n```"
+   },
+   {
+    "tag": "intent",
+    "prompt": "om the kettle.\n\nExtract the intent behind the human's addendum in at most 2 sentences, explaining the purpose or reasoning behind the addendum. Focus on what the agent needs to achieve and why the human may have said this particular addendum, including any important context or conditions that affect the task. Do not base the explanation on specific locations, as this may change in later scenarios.",
+    "reply": "The agent must navigate to the goal while ensuring it avoids the kettle. This constraint is likely intended to prevent the agent from interacting with or being affected by the heat source associated with the kettle."
+   },
+   {
+    "tag": "generalize",
+    "prompt": "emantic relevance should be generalized to the same name. Only generalize using object properties explicitly listed in the environment.\nReturn a newline-delimited list of the original feature names, followed by \"->\", followed by either NO CHANGE or a generalized feature name. For example\nfeature_a -> feature_letter\nfeature_b -> feature_letter\nfeature_letter -> feature_letter\nfeature_1 -> NO CHANGE",
+    "reply": "distance_to_goal -> NO CHANGE\ndistance_to_kettle -> distance_to_heat_source"
+   },
+   {
+    "tag": "codegen",
+    "prompt": "_utils import get_objects_with_property\ndef feature_name(environment, trajectory):\n    ...\n    return feat_val\n```\nPlease ensure the code is executable. Make sure your code is generalizable to new environments. Don't assume you are given any other information about the environment other than what is explicitly specified in the environment config. Do not include any surrounding explanation or text.",
+    "reply": "Feature name: \"distance_to_heat_source\"\nFeature code:\n```python\nimport numpy as np\nfrom flexible_features.utils.env_utils import get_objects_with_property\n\ndef distance_to_heat_source(environment, trajectory):\n    # Get the positions of all objects with the property \"heat_source\"\n    heat_source_positions = get_objects_with_property(\"heat_source\", environment)\n    \n    # If no heat sources are found, return an array containing 0.0\n    if not heat_source_positions:\n        return np.array([0.0], dtype=np.float64)\n    \n    # Initialize the cumulative distance\n    total_dist = 0.0\n    \n    # Iterate through the trajectory in steps of 2 (x, y pairs)\n    for i in range(0, len(trajectory), 2):\n        # Get the current agent position\n        agent_pos = np.array([trajectory[i], trajectory[i+1]])\n        \n        # Iterate through each heat source object\n        for obj_pos in heat_source_positions:\n            # Calculate the Euclidean distance between the agent and the object\n            dist = np.linalg.norm(agent_pos - np.array(obj_pos))\n            total_dist += dist\n            \n    # Calculate the average distance over the number of objects\n    # This follows the logic of summing all distances and dividing by the number of objects\n    feature_value = np.array([total_dist / len(heat_source_positions)], dtype=np.float64)\n    \n    return feature_value\n```"
+   },
+   {
+    "tag": "verify",
+    "ll_specific": -93.73,
+    "ll_general": -95.56,
+    "decision": "asked",
+    "kept_generalization": false
+   },
+   {
+    "tag": "mask",
+    "prompt": "e objects the same way, even if only one of them is relevant to the instruction.\nFor example, for the instruction go to a book and the features [\"book_dist\", \"table_dist\", \"chair_dist\"], the minimal set would include only the features that refer specifically to the object mentioned in the instruction.\nProvide your answer as ONLY a single integer. Do not include any surrounding explanation or text.",
+    "reply": "1"
+   },
+   {
+    "tag": "mask",
+    "prompt": "e objects the same way, even if only one of them is relevant to the instruction.\nFor example, for the instruction go to a book and the features [\"book_dist\", \"table_dist\", \"chair_dist\"], the minimal set would include only the features that refer specifically to the object mentioned in the instruction.\nProvide your answer as ONLY a single integer. Do not include any surrounding explanation or text.",
+    "reply": "1"
+   }
+  ],
+  "kind": "personal",
+  "verify": [
+   {
+    "tag": "verify",
+    "ll_specific": -93.73,
+    "ll_general": -95.56,
+    "decision": "asked",
+    "kept_generalization": false
+   }
+  ],
+  "asked": 1
+ },
+ {
+  "world": "kitchen",
+  "scenario": "Personal/Add+Mask",
+  "seed": 0,
+  "method": "FLEX",
+  "score": 1.0,
+  "transfer": 0.9433628929083051,
+  "features": [
+   "distance_to_goal",
+   "distance_to_kettle"
+  ],
+  "sources": [
+   "builtin",
+   "lm"
+  ],
+  "theta": [
+   -0.8227,
+   0.5188
+  ],
+  "error": null,
+  "fallbacks": 0,
+  "dropped": 0,
+  "log": [
+   {
+    "tag": "add",
+    "prompt": "(e.g. if distance to goal feature is already in the list, do not give distance to goal again). Ground your answer in visible objects in the scene, and give an answer (only 1 specific answer (e.g. distance to heavy objects)) that we can compute relative to the position of the agent.\nFollow your answer with one newline and at most one sentence of explanation with specific references to the addendum.",
+    "reply": "distance_to_kettle\nThe addendum specifies that the agent must stay away from the kettle."
+   },
+   {
+    "tag": "codegen",
+    "prompt": "_utils import get_objects_with_property\ndef feature_name(environment, trajectory):\n    ...\n    return feat_val\n```\nPlease ensure the code is executable. Make sure your code is generalizable to new environments. Don't assume you are given any other information about the environment other than what is explicitly specified in the environment config. Do not include any surrounding explanation or text.",
+    "reply": "Feature name: \"distance_to_kettle\"\nFeature code:\n```python\nimport numpy as np\nfrom flexible_features.utils.env_utils import get_objects_with_property\n\ndef distance_to_kettle(environment, trajectory):\n    # returns the position(s) of the object(s) with property \"kettle\"\n    kettle_positions = get_objects_with_property(\"kettle\", environment)\n    # initialize the feature value\n    kettle_feat = np.zeros(1, dtype=np.float64)\n    \n    if not kettle_positions:\n        return kettle_feat\n\n    # iterate through the trajectory\n    for i in range(0, len(trajectory) - 1, 2):\n        agent_pos = np.array([trajectory[i], trajectory[i + 1]])\n        # iterate through the kettle objects\n        for kettle_pos in kettle_positions:\n            # calculate the Euclidean distance between the agent and the kettle object\n            dist = np.linalg.norm(agent_pos - np.array(kettle_pos))\n            kettle_feat[0] += dist\n            \n    # return the average distance to the kettle object(s) for each trajectory\n    # following the logic of summing distances and dividing by the number of objects\n    return kettle_feat / len(kettle_positions)\n```"
+   },
+   {
+    "tag": "intent",
+    "prompt": "om the kettle.\n\nExtract the intent behind the human's addendum in at most 2 sentences, explaining the purpose or reasoning behind the addendum. Focus on what the agent needs to achieve and why the human may have said this particular addendum, including any important context or conditions that affect the task. Do not base the explanation on specific locations, as this may change in later scenarios.",
+    "reply": "The agent needs to navigate to the goal while ensuring it avoids contact with or proximity to the kettle. This addendum introduces a specific constraint to the original task, requiring the agent to plan a path that treats the kettle as an obstacle to be avoided."
+   },
+   {
+    "tag": "generalize",
+    "prompt": "emantic relevance should be generalized to the same name. Only generalize using object properties explicitly listed in the environment.\nReturn a newline-delimited list of the original feature names, followed by \"->\", followed by either NO CHANGE or a generalized feature name. For example\nfeature_a -> feature_letter\nfeature_b -> feature_letter\nfeature_letter -> feature_letter\nfeature_1 -> NO CHANGE",
+    "reply": "distance_to_goal -> NO CHANGE\ndistance_to_fridge -> NO CHANGE\ndistance_to_kettle -> NO CHANGE"
+   },
+   {
+    "tag": "mask",
+    "prompt": "e objects the same way, even if only one of them is relevant to the instruction.\nFor example, for the instruction go to a book and the features [\"book_dist\", \"table_dist\", \"chair_dist\"], the minimal set would include only the features that refer specifically to the object mentioned in the instruction.\nProvide your answer as ONLY a single integer. Do not include any surrounding explanation or text.",
+    "reply": "1"
+   },
+   {
+    "tag": "mask",
+    "prompt": "e objects the same way, even if only one of them is relevant to the instruction.\nFor example, for the instruction go to a book and the features [\"book_dist\", \"table_dist\", \"chair_dist\"], the minimal set would include only the features that refer specifically to the object mentioned in the instruction.\nProvide your answer as ONLY a single integer. Do not include any surrounding explanation or text.",
+    "reply": "0"
+   },
+   {
+    "tag": "mask",
+    "prompt": "e objects the same way, even if only one of them is relevant to the instruction.\nFor example, for the instruction go to a book and the features [\"book_dist\", \"table_dist\", \"chair_dist\"], the minimal set would include only the features that refer specifically to the object mentioned in the instruction.\nProvide your answer as ONLY a single integer. Do not include any surrounding explanation or text.",
+    "reply": "1"
+   }
+  ],
+  "kind": "personal",
+  "verify": [],
+  "asked": 0
+ },
+ {
+  "world": "kitchen",
+  "scenario": "Personal/Add+Mask",
+  "seed": 0,
+  "method": "FLEX-V",
+  "score": 1.0,
+  "transfer": 0.9433628929083051,
+  "features": [
+   "distance_to_goal",
+   "distance_to_kettle"
+  ],
+  "sources": [
+   "builtin",
+   "lm"
+  ],
+  "theta": [
+   -0.8227,
+   0.5188
+  ],
+  "error": null,
+  "fallbacks": 0,
+  "dropped": 0,
+  "log": [
+   {
+    "tag": "add",
+    "prompt": "(e.g. if distance to goal feature is already in the list, do not give distance to goal again). Ground your answer in visible objects in the scene, and give an answer (only 1 specific answer (e.g. distance to heavy objects)) that we can compute relative to the position of the agent.\nFollow your answer with one newline and at most one sentence of explanation with specific references to the addendum.",
+    "reply": "distance_to_kettle\nThe addendum specifies that the agent must stay away from the kettle."
+   },
+   {
+    "tag": "codegen",
+    "prompt": "_utils import get_objects_with_property\ndef feature_name(environment, trajectory):\n    ...\n    return feat_val\n```\nPlease ensure the code is executable. Make sure your code is generalizable to new environments. Don't assume you are given any other information about the environment other than what is explicitly specified in the environment config. Do not include any surrounding explanation or text.",
+    "reply": "Feature name: \"distance_to_kettle\"\nFeature code:\n```python\nimport numpy as np\nfrom flexible_features.utils.env_utils import get_objects_with_property\n\ndef distance_to_kettle(environment, trajectory):\n    # returns the position(s) of the object(s) with property \"kettle\"\n    kettle_positions = get_objects_with_property(\"kettle\", environment)\n    # initialize the feature value\n    kettle_feat = np.zeros(1, dtype=np.float64)\n    \n    if not kettle_positions:\n        return kettle_feat\n\n    # iterate through the trajectory\n    for i in range(0, len(trajectory) - 1, 2):\n        agent_pos = np.array([trajectory[i], trajectory[i + 1]])\n        # iterate through the kettle objects\n        for kettle_pos in kettle_positions:\n            # calculate the Euclidean distance between the agent and the kettle object\n            dist = np.linalg.norm(agent_pos - np.array(kettle_pos))\n            kettle_feat[0] += dist\n            \n    # return the average distance to the kettle object(s) for each trajectory\n    # following the logic of summing distances and dividing by the number of objects\n    return kettle_feat / len(kettle_positions)\n```"
+   },
+   {
+    "tag": "intent",
+    "prompt": "om the kettle.\n\nExtract the intent behind the human's addendum in at most 2 sentences, explaining the purpose or reasoning behind the addendum. Focus on what the agent needs to achieve and why the human may have said this particular addendum, including any important context or conditions that affect the task. Do not base the explanation on specific locations, as this may change in later scenarios.",
+    "reply": "The agent needs to navigate to the goal while ensuring it avoids contact with or proximity to the kettle. This addendum introduces a specific constraint to the original task, requiring the agent to plan a path that treats the kettle as an obstacle to be avoided."
+   },
+   {
+    "tag": "generalize",
+    "prompt": "emantic relevance should be generalized to the same name. Only generalize using object properties explicitly listed in the environment.\nReturn a newline-delimited list of the original feature names, followed by \"->\", followed by either NO CHANGE or a generalized feature name. For example\nfeature_a -> feature_letter\nfeature_b -> feature_letter\nfeature_letter -> feature_letter\nfeature_1 -> NO CHANGE",
+    "reply": "distance_to_goal -> NO CHANGE\ndistance_to_fridge -> NO CHANGE\ndistance_to_kettle -> NO CHANGE"
+   },
+   {
+    "tag": "mask",
+    "prompt": "e objects the same way, even if only one of them is relevant to the instruction.\nFor example, for the instruction go to a book and the features [\"book_dist\", \"table_dist\", \"chair_dist\"], the minimal set would include only the features that refer specifically to the object mentioned in the instruction.\nProvide your answer as ONLY a single integer. Do not include any surrounding explanation or text.",
+    "reply": "1"
+   },
+   {
+    "tag": "mask",
+    "prompt": "e objects the same way, even if only one of them is relevant to the instruction.\nFor example, for the instruction go to a book and the features [\"book_dist\", \"table_dist\", \"chair_dist\"], the minimal set would include only the features that refer specifically to the object mentioned in the instruction.\nProvide your answer as ONLY a single integer. Do not include any surrounding explanation or text.",
+    "reply": "0"
+   },
+   {
+    "tag": "mask",
+    "prompt": "e objects the same way, even if only one of them is relevant to the instruction.\nFor example, for the instruction go to a book and the features [\"book_dist\", \"table_dist\", \"chair_dist\"], the minimal set would include only the features that refer specifically to the object mentioned in the instruction.\nProvide your answer as ONLY a single integer. Do not include any surrounding explanation or text.",
+    "reply": "1"
+   }
+  ],
+  "kind": "personal",
+  "verify": [],
+  "asked": 0
+ },
+ {
+  "world": "kitchen",
+  "scenario": "Personal/Add+Mask",
+  "seed": 1,
+  "method": "FLEX",
+  "score": 0.5937476411026086,
+  "transfer": 0.9410882380202675,
+  "features": [
+   "distance_to_goal"
+  ],
+  "sources": [
+   "builtin"
+  ],
+  "theta": [
+   -0.1527
+  ],
+  "error": null,
+  "fallbacks": 0,
+  "dropped": 0,
+  "log": [
+   {
+    "tag": "add",
+    "prompt": "(e.g. if distance to goal feature is already in the list, do not give distance to goal again). Ground your answer in visible objects in the scene, and give an answer (only 1 specific answer (e.g. distance to heavy objects)) that we can compute relative to the position of the agent.\nFollow your answer with one newline and at most one sentence of explanation with specific references to the addendum.",
+    "reply": "distance_to_kettle\nThe addendum \"Stay away from the kettle\" requires the agent to know its distance from the kettle."
+   },
+   {
+    "tag": "codegen",
+    "prompt": "_utils import get_objects_with_property\ndef feature_name(environment, trajectory):\n    ...\n    return feat_val\n```\nPlease ensure the code is executable. Make sure your code is generalizable to new environments. Don't assume you are given any other information about the environment other than what is explicitly specified in the environment config. Do not include any surrounding explanation or text.",
+    "reply": "Feature name: \"distance_to_kettle\"\nFeature code:\n```python\nimport numpy as np\nfrom flexible_features.utils.env_utils import get_objects_with_property\n\ndef distance_to_kettle(environment, trajectory):\n    # Get the positions of all kettles in the environment\n    kettle_positions = get_objects_with_property(\"kettle\", environment)\n    \n    # If no kettles are present, return a zero array\n    if not kettle_positions:\n        return np.array([0.0], dtype=np.float64)\n    \n    # Initialize the cumulative distance\n    total_dist = 0.0\n    \n    # Iterate through the trajectory in steps of 2 (x, y pairs)\n    for i in range(0, len(trajectory), 2):\n        # Get the agent's current position\n        agent_pos = np.array([trajectory[i], trajectory[i+1]])\n        \n        # Calculate the distance to each kettle and add to the total\n        for kettle_pos in kettle_positions:\n            dist = np.linalg.norm(agent_pos - np.array(kettle_pos))\n            total_dist += dist\n            \n    # Calculate the average distance per object over the trajectory\n    feature_value = np.array([total_dist / len(kettle_positions)], dtype=np.float64)\n    return feature_value\n```"
+   },
+   {
+    "tag": "intent",
+    "prompt": "om the kettle.\n\nExtract the intent behind the human's addendum in at most 2 sentences, explaining the purpose or reasoning behind the addendum. Focus on what the agent needs to achieve and why the human may have said this particular addendum, including any important context or conditions that affect the task. Do not base the explanation on specific locations, as this may change in later scenarios.",
+    "reply": "The agent must navigate to the goal while ensuring it avoids the kettle. This constraint is likely intended to prevent the agent from interacting with or being affected by the heat source associated with the kettle."
+   },
+   {
+    "tag": "generalize",
+    "prompt": "emantic relevance should be generalized to the same name. Only generalize using object properties explicitly listed in the environment.\nReturn a newline-delimited list of the original feature names, followed by \"->\", followed by either NO CHANGE or a generalized feature name. For example\nfeature_a -> feature_letter\nfeature_b -> feature_letter\nfeature_letter -> feature_letter\nfeature_1 -> NO CHANGE",
+    "reply": "distance_to_goal -> NO CHANGE\ndistance_to_kettle -> distance_to_heat_source"
+   },
+   {
+    "tag": "codegen",
+    "prompt": "_utils import get_objects_with_property\ndef feature_name(environment, trajectory):\n    ...\n    return feat_val\n```\nPlease ensure the code is executable. Make sure your code is generalizable to new environments. Don't assume you are given any other information about the environment other than what is explicitly specified in the environment config. Do not include any surrounding explanation or text.",
+    "reply": "Feature name: \"distance_to_heat_source\"\nFeature code:\n```python\nimport numpy as np\nfrom flexible_features.utils.env_utils import get_objects_with_property\n\ndef distance_to_heat_source(environment, trajectory):\n    # Get the positions of all objects with the property \"heat_source\"\n    heat_source_positions = get_objects_with_property(\"heat_source\", environment)\n    \n    # If no heat source objects are found, return 0.0\n    if not heat_source_positions:\n        return np.array([0.0], dtype=np.float64)\n    \n    # Initialize the feature value as a numpy array\n    heat_source_feat = np.zeros(1, dtype=np.float64)\n    \n    # Iterate through the trajectory in steps of 2 (x, y pairs)\n    for i in range(0, len(trajectory) - 1, 2):\n        agent_x = trajectory[i]\n        agent_y = trajectory[i+1]\n        \n        # Iterate through each heat source object\n        for obj_pos in heat_source_positions:\n            # Calculate the Euclidean distance between the agent and the object\n            dx = abs(agent_x - obj_pos[0])\n            dy = abs(agent_y - obj_pos[1])\n            dist = np.linalg.norm([dx, dy])\n            \n            # Add the distance to the cumulative feature value\n            heat_source_feat[0] += dist\n            \n    # Return the average distance to the heat source objects over the trajectory\n    feature_value = heat_source_feat / len(heat_source_positions)\n    return feature_value\n```"
+   },
+   {
+    "tag": "mask",
+    "prompt": "e objects the same way, even if only one of them is relevant to the instruction.\nFor example, for the instruction go to a book and the features [\"book_dist\", \"table_dist\", \"chair_dist\"], the minimal set would include only the features that refer specifically to the object mentioned in the instruction.\nProvide your answer as ONLY a single integer. Do not include any surrounding explanation or text.",
+    "reply": "1"
+   },
+   {
+    "tag": "mask",
+    "prompt": "e objects the same way, even if only one of them is relevant to the instruction.\nFor example, for the instruction go to a book and the features [\"book_dist\", \"table_dist\", \"chair_dist\"], the minimal set would include only the features that refer specifically to the object mentioned in the instruction.\nProvide your answer as ONLY a single integer. Do not include any surrounding explanation or text.",
+    "reply": "0"
+   },
+   {
+    "tag": "mask",
+    "prompt": "e objects the same way, even if only one of them is relevant to the instruction.\nFor example, for the instruction go to a book and the features [\"book_dist\", \"table_dist\", \"chair_dist\"], the minimal set would include only the features that refer specifically to the object mentioned in the instruction.\nProvide your answer as ONLY a single integer. Do not include any surrounding explanation or text.",
+    "reply": "0"
+   }
+  ],
+  "kind": "personal",
+  "verify": [],
+  "asked": 0
+ },
+ {
+  "world": "kitchen",
+  "scenario": "Personal/Add+Mask",
+  "seed": 1,
+  "method": "FLEX-V",
+  "score": 0.9439233335915781,
+  "transfer": 0.9374608210488129,
+  "features": [
+   "distance_to_goal",
+   "distance_to_kettle"
+  ],
+  "sources": [
+   "builtin",
+   "lm"
+  ],
+  "theta": [
+   -0.9688,
+   1.1369
+  ],
+  "error": null,
+  "fallbacks": 0,
+  "dropped": 0,
+  "log": [
+   {
+    "tag": "add",
+    "prompt": "(e.g. if distance to goal feature is already in the list, do not give distance to goal again). Ground your answer in visible objects in the scene, and give an answer (only 1 specific answer (e.g. distance to heavy objects)) that we can compute relative to the position of the agent.\nFollow your answer with one newline and at most one sentence of explanation with specific references to the addendum.",
+    "reply": "distance_to_kettle\nThe addendum \"Stay away from the kettle\" requires the agent to know its distance from the kettle."
+   },
+   {
+    "tag": "codegen",
+    "prompt": "_utils import get_objects_with_property\ndef feature_name(environment, trajectory):\n    ...\n    return feat_val\n```\nPlease ensure the code is executable. Make sure your code is generalizable to new environments. Don't assume you are given any other information about the environment other than what is explicitly specified in the environment config. Do not include any surrounding explanation or text.",
+    "reply": "Feature name: \"distance_to_kettle\"\nFeature code:\n```python\nimport numpy as np\nfrom flexible_features.utils.env_utils import get_objects_with_property\n\ndef distance_to_kettle(environment, trajectory):\n    # Get the positions of all kettles in the environment\n    kettle_positions = get_objects_with_property(\"kettle\", environment)\n    \n    # If no kettles are present, return a zero array\n    if not kettle_positions:\n        return np.array([0.0], dtype=np.float64)\n    \n    # Initialize the cumulative distance\n    total_dist = 0.0\n    \n    # Iterate through the trajectory in steps of 2 (x, y pairs)\n    for i in range(0, len(trajectory), 2):\n        # Get the agent's current position\n        agent_pos = np.array([trajectory[i], trajectory[i+1]])\n        \n        # Calculate the distance to each kettle and add to the total\n        for kettle_pos in kettle_positions:\n            dist = np.linalg.norm(agent_pos - np.array(kettle_pos))\n            total_dist += dist\n            \n    # Calculate the average distance per object over the trajectory\n    feature_value = np.array([total_dist / len(kettle_positions)], dtype=np.float64)\n    return feature_value\n```"
+   },
+   {
+    "tag": "intent",
+    "prompt": "om the kettle.\n\nExtract the intent behind the human's addendum in at most 2 sentences, explaining the purpose or reasoning behind the addendum. Focus on what the agent needs to achieve and why the human may have said this particular addendum, including any important context or conditions that affect the task. Do not base the explanation on specific locations, as this may change in later scenarios.",
+    "reply": "The agent must navigate to the goal while ensuring it avoids the kettle. This constraint is likely intended to prevent the agent from interacting with or being affected by the heat source associated with the kettle."
+   },
+   {
+    "tag": "generalize",
+    "prompt": "emantic relevance should be generalized to the same name. Only generalize using object properties explicitly listed in the environment.\nReturn a newline-delimited list of the original feature names, followed by \"->\", followed by either NO CHANGE or a generalized feature name. For example\nfeature_a -> feature_letter\nfeature_b -> feature_letter\nfeature_letter -> feature_letter\nfeature_1 -> NO CHANGE",
+    "reply": "distance_to_goal -> NO CHANGE\ndistance_to_kettle -> distance_to_heat_source"
+   },
+   {
+    "tag": "codegen",
+    "prompt": "_utils import get_objects_with_property\ndef feature_name(environment, trajectory):\n    ...\n    return feat_val\n```\nPlease ensure the code is executable. Make sure your code is generalizable to new environments. Don't assume you are given any other information about the environment other than what is explicitly specified in the environment config. Do not include any surrounding explanation or text.",
+    "reply": "Feature name: \"distance_to_heat_source\"\nFeature code:\n```python\nimport numpy as np\nfrom flexible_features.utils.env_utils import get_objects_with_property\n\ndef distance_to_heat_source(environment, trajectory):\n    # Get the positions of all objects with the property \"heat_source\"\n    heat_source_positions = get_objects_with_property(\"heat_source\", environment)\n    \n    # If no heat source objects are found, return 0.0\n    if not heat_source_positions:\n        return np.array([0.0], dtype=np.float64)\n    \n    # Initialize the feature value as a numpy array\n    heat_source_feat = np.zeros(1, dtype=np.float64)\n    \n    # Iterate through the trajectory in steps of 2 (x, y pairs)\n    for i in range(0, len(trajectory) - 1, 2):\n        agent_x = trajectory[i]\n        agent_y = trajectory[i+1]\n        \n        # Iterate through each heat source object\n        for obj_pos in heat_source_positions:\n            # Calculate the Euclidean distance between the agent and the object\n            dx = abs(agent_x - obj_pos[0])\n            dy = abs(agent_y - obj_pos[1])\n            dist = np.linalg.norm([dx, dy])\n            \n            # Add the distance to the cumulative feature value\n            heat_source_feat[0] += dist\n            \n    # Return the average distance to the heat source objects over the trajectory\n    feature_value = heat_source_feat / len(heat_source_positions)\n    return feature_value\n```"
+   },
+   {
+    "tag": "verify",
+    "ll_specific": -92.75,
+    "ll_general": -95.78,
+    "decision": "demos",
+    "kept_generalization": false
+   },
+   {
+    "tag": "mask",
+    "prompt": "e objects the same way, even if only one of them is relevant to the instruction.\nFor example, for the instruction go to a book and the features [\"book_dist\", \"table_dist\", \"chair_dist\"], the minimal set would include only the features that refer specifically to the object mentioned in the instruction.\nProvide your answer as ONLY a single integer. Do not include any surrounding explanation or text.",
+    "reply": "1"
+   },
+   {
+    "tag": "mask",
+    "prompt": "e objects the same way, even if only one of them is relevant to the instruction.\nFor example, for the instruction go to a book and the features [\"book_dist\", \"table_dist\", \"chair_dist\"], the minimal set would include only the features that refer specifically to the object mentioned in the instruction.\nProvide your answer as ONLY a single integer. Do not include any surrounding explanation or text.",
+    "reply": "0"
+   },
+   {
+    "tag": "mask",
+    "prompt": "e objects the same way, even if only one of them is relevant to the instruction.\nFor example, for the instruction go to a book and the features [\"book_dist\", \"table_dist\", \"chair_dist\"], the minimal set would include only the features that refer specifically to the object mentioned in the instruction.\nProvide your answer as ONLY a single integer. Do not include any surrounding explanation or text.",
+    "reply": "1"
+   }
+  ],
+  "kind": "personal",
+  "verify": [
+   {
+    "tag": "verify",
+    "ll_specific": -92.75,
+    "ll_general": -95.78,
+    "decision": "demos",
+    "kept_generalization": false
+   }
+  ],
+  "asked": 0
+ },
+ {
+  "world": "lavaland",
+  "scenario": "Personal/Add Only",
+  "seed": 0,
+  "method": "FLEX",
+  "score": 1.0,
+  "transfer": 0.9433628929083051,
+  "features": [
+   "distance_to_goal",
+   "distance_to_swamp"
+  ],
+  "sources": [
+   "builtin",
+   "lm"
+  ],
+  "theta": [
+   -0.8227,
+   0.5188
+  ],
+  "error": null,
+  "fallbacks": 0,
+  "dropped": 0,
+  "log": [
+   {
+    "tag": "add",
+    "prompt": "(e.g. if distance to goal feature is already in the list, do not give distance to goal again). Ground your answer in visible objects in the scene, and give an answer (only 1 specific answer (e.g. distance to heavy objects)) that we can compute relative to the position of the agent.\nFollow your answer with one newline and at most one sentence of explanation with specific references to the addendum.",
+    "reply": "distance_to_swamp\nThe addendum \"Stay away from the swamp\" indicates that the agent must avoid the swamp, making its distance a necessary feature."
+   },
+   {
+    "tag": "codegen",
+    "prompt": "_utils import get_objects_with_property\ndef feature_name(environment, trajectory):\n    ...\n    return feat_val\n```\nPlease ensure the code is executable. Make sure your code is generalizable to new environments. Don't assume you are given any other information about the environment other than what is explicitly specified in the environment config. Do not include any surrounding explanation or text.",
+    "reply": "Feature name: \"distance_to_swamp\"\nFeature code:\n```python\nimport numpy as np\nfrom flexible_features.utils.env_utils import get_objects_with_property\n\ndef distance_to_swamp(environment, trajectory):\n    # returns the position(s) of the object(s) with property \"swamp\"\n    swamp_objects_pos = get_objects_with_property(\"swamp\", environment)\n    # initialize the feature value\n    swamp_feat = np.zeros(1, dtype=np.float64)\n    \n    if len(swamp_objects_pos) == 0:\n        return swamp_feat\n\n    # iterate through the trajectory\n    for i in range(0, len(trajectory) - 1, 2):\n        agent_pos = np.array([trajectory[i], trajectory[i+1]])\n        # iterate through the swamp objects\n        for swamp_pos in swamp_objects_pos:\n            # calculate the Euclidean distance between the agent and the swamp object\n            dist = np.linalg.norm(agent_pos - np.array(swamp_pos))\n            swamp_feat[0] += dist\n            \n    # return the average distance to the swamp object(s) for the trajectory\n    feature_value = swamp_feat / len(swamp_objects_pos)\n    return feature_value\n```"
+   },
+   {
+    "tag": "intent",
+    "prompt": "rom the swamp.\n\nExtract the intent behind the human's addendum in at most 2 sentences, explaining the purpose or reasoning behind the addendum. Focus on what the agent needs to achieve and why the human may have said this particular addendum, including any important context or conditions that affect the task. Do not base the explanation on specific locations, as this may change in later scenarios.",
+    "reply": "The agent needs to navigate to the goal while avoiding the swamp to ensure it does not encounter hazardous terrain. This addendum serves as a safety constraint to prevent the agent from entering dangerous areas during its task."
+   },
+   {
+    "tag": "generalize",
+    "prompt": "emantic relevance should be generalized to the same name. Only generalize using object properties explicitly listed in the environment.\nReturn a newline-delimited list of the original feature names, followed by \"->\", followed by either NO CHANGE or a generalized feature name. For example\nfeature_a -> feature_letter\nfeature_b -> feature_letter\nfeature_letter -> feature_letter\nfeature_1 -> NO CHANGE",
+    "reply": "distance_to_goal -> NO CHANGE\ndistance_to_swamp -> NO CHANGE"
+   },
+   {
+    "tag": "mask",
+    "prompt": "e objects the same way, even if only one of them is relevant to the instruction.\nFor example, for the instruction go to a book and the features [\"book_dist\", \"table_dist\", \"chair_dist\"], the minimal set would include only the features that refer specifically to the object mentioned in the instruction.\nProvide your answer as ONLY a single integer. Do not include any surrounding explanation or text.",
+    "reply": "1"
+   },
+   {
+    "tag": "mask",
+    "prompt": "e objects the same way, even if only one of them is relevant to the instruction.\nFor example, for the instruction go to a book and the features [\"book_dist\", \"table_dist\", \"chair_dist\"], the minimal set would include only the features that refer specifically to the object mentioned in the instruction.\nProvide your answer as ONLY a single integer. Do not include any surrounding explanation or text.",
+    "reply": "1"
+   }
+  ],
+  "kind": "personal",
+  "verify": [],
+  "asked": 0
+ },
+ {
+  "world": "lavaland",
+  "scenario": "Personal/Add Only",
+  "seed": 0,
+  "method": "FLEX-V",
+  "score": 1.0,
+  "transfer": 0.9433628929083051,
+  "features": [
+   "distance_to_goal",
+   "distance_to_swamp"
+  ],
+  "sources": [
+   "builtin",
+   "lm"
+  ],
+  "theta": [
+   -0.8227,
+   0.5188
+  ],
+  "error": null,
+  "fallbacks": 0,
+  "dropped": 0,
+  "log": [
+   {
+    "tag": "add",
+    "prompt": "(e.g. if distance to goal feature is already in the list, do not give distance to goal again). Ground your answer in visible objects in the scene, and give an answer (only 1 specific answer (e.g. distance to heavy objects)) that we can compute relative to the position of the agent.\nFollow your answer with one newline and at most one sentence of explanation with specific references to the addendum.",
+    "reply": "distance_to_swamp\nThe addendum \"Stay away from the swamp\" indicates that the agent must avoid the swamp, making its distance a necessary feature."
+   },
+   {
+    "tag": "codegen",
+    "prompt": "_utils import get_objects_with_property\ndef feature_name(environment, trajectory):\n    ...\n    return feat_val\n```\nPlease ensure the code is executable. Make sure your code is generalizable to new environments. Don't assume you are given any other information about the environment other than what is explicitly specified in the environment config. Do not include any surrounding explanation or text.",
+    "reply": "Feature name: \"distance_to_swamp\"\nFeature code:\n```python\nimport numpy as np\nfrom flexible_features.utils.env_utils import get_objects_with_property\n\ndef distance_to_swamp(environment, trajectory):\n    # returns the position(s) of the object(s) with property \"swamp\"\n    swamp_objects_pos = get_objects_with_property(\"swamp\", environment)\n    # initialize the feature value\n    swamp_feat = np.zeros(1, dtype=np.float64)\n    \n    if len(swamp_objects_pos) == 0:\n        return swamp_feat\n\n    # iterate through the trajectory\n    for i in range(0, len(trajectory) - 1, 2):\n        agent_pos = np.array([trajectory[i], trajectory[i+1]])\n        # iterate through the swamp objects\n        for swamp_pos in swamp_objects_pos:\n            # calculate the Euclidean distance between the agent and the swamp object\n            dist = np.linalg.norm(agent_pos - np.array(swamp_pos))\n            swamp_feat[0] += dist\n            \n    # return the average distance to the swamp object(s) for the trajectory\n    feature_value = swamp_feat / len(swamp_objects_pos)\n    return feature_value\n```"
+   },
+   {
+    "tag": "intent",
+    "prompt": "rom the swamp.\n\nExtract the intent behind the human's addendum in at most 2 sentences, explaining the purpose or reasoning behind the addendum. Focus on what the agent needs to achieve and why the human may have said this particular addendum, including any important context or conditions that affect the task. Do not base the explanation on specific locations, as this may change in later scenarios.",
+    "reply": "The agent needs to navigate to the goal while avoiding the swamp to ensure it does not encounter hazardous terrain. This addendum serves as a safety constraint to prevent the agent from entering dangerous areas during its task."
+   },
+   {
+    "tag": "generalize",
+    "prompt": "emantic relevance should be generalized to the same name. Only generalize using object properties explicitly listed in the environment.\nReturn a newline-delimited list of the original feature names, followed by \"->\", followed by either NO CHANGE or a generalized feature name. For example\nfeature_a -> feature_letter\nfeature_b -> feature_letter\nfeature_letter -> feature_letter\nfeature_1 -> NO CHANGE",
+    "reply": "distance_to_goal -> NO CHANGE\ndistance_to_swamp -> NO CHANGE"
+   },
+   {
+    "tag": "mask",
+    "prompt": "e objects the same way, even if only one of them is relevant to the instruction.\nFor example, for the instruction go to a book and the features [\"book_dist\", \"table_dist\", \"chair_dist\"], the minimal set would include only the features that refer specifically to the object mentioned in the instruction.\nProvide your answer as ONLY a single integer. Do not include any surrounding explanation or text.",
+    "reply": "1"
+   },
+   {
+    "tag": "mask",
+    "prompt": "e objects the same way, even if only one of them is relevant to the instruction.\nFor example, for the instruction go to a book and the features [\"book_dist\", \"table_dist\", \"chair_dist\"], the minimal set would include only the features that refer specifically to the object mentioned in the instruction.\nProvide your answer as ONLY a single integer. Do not include any surrounding explanation or text.",
+    "reply": "1"
+   }
+  ],
+  "kind": "personal",
+  "verify": [],
+  "asked": 0
+ },
+ {
+  "world": "lavaland",
+  "scenario": "Personal/Add Only",
+  "seed": 1,
+  "method": "FLEX",
+  "score": 0.9439233335915781,
+  "transfer": 0.9374608210488129,
+  "features": [
+   "distance_to_goal",
+   "distance_to_swamp"
+  ],
+  "sources": [
+   "builtin",
+   "lm"
+  ],
+  "theta": [
+   -0.9688,
+   1.1369
+  ],
+  "error": null,
+  "fallbacks": 0,
+  "dropped": 0,
+  "log": [
+   {
+    "tag": "add",
+    "prompt": "(e.g. if distance to goal feature is already in the list, do not give distance to goal again). Ground your answer in visible objects in the scene, and give an answer (only 1 specific answer (e.g. distance to heavy objects)) that we can compute relative to the position of the agent.\nFollow your answer with one newline and at most one sentence of explanation with specific references to the addendum.",
+    "reply": "distance_to_swamp\nThe addendum \"Stay away from the swamp\" requires the agent to know its proximity to the swamp."
+   },
+   {
+    "tag": "codegen",
+    "prompt": "_utils import get_objects_with_property\ndef feature_name(environment, trajectory):\n    ...\n    return feat_val\n```\nPlease ensure the code is executable. Make sure your code is generalizable to new environments. Don't assume you are given any other information about the environment other than what is explicitly specified in the environment config. Do not include any surrounding explanation or text.",
+    "reply": "Feature name: \"distance_to_swamp\"\nFeature code:\n```python\nimport numpy as np\nfrom flexible_features.utils.env_utils import get_objects_with_property\n\ndef distance_to_swamp(environment, trajectory):\n    # Get the positions of all objects with the property \"swamp\"\n    swamp_positions = get_objects_with_property(\"swamp\", environment)\n    \n    # If no swamp is found, return an array with 0.0\n    if not swamp_positions:\n        return np.array([0.0], dtype=np.float64)\n    \n    # Initialize the feature value as a 1-element array\n    swamp_feat = np.zeros(1, dtype=np.float64)\n    \n    # Iterate through the trajectory in steps of 2 (x, y pairs)\n    for i in range(0, len(trajectory) - 1, 2):\n        agent_pos = np.array([trajectory[i], trajectory[i+1]])\n        # Iterate through each swamp object to calculate distance\n        for swamp_pos in swamp_positions:\n            dist = np.linalg.norm(agent_pos - np.array(swamp_pos))\n            swamp_feat[0] += dist\n            \n    # Return the cumulative average distance over the trajectory\n    # This calculates the sum of the average distances to all swamp objects at each timestep\n    return swamp_feat / len(swamp_positions)\n```"
+   },
+   {
+    "tag": "intent",
+    "prompt": "rom the swamp.\n\nExtract the intent behind the human's addendum in at most 2 sentences, explaining the purpose or reasoning behind the addendum. Focus on what the agent needs to achieve and why the human may have said this particular addendum, including any important context or conditions that affect the task. Do not base the explanation on specific locations, as this may change in later scenarios.",
+    "reply": "The agent must navigate to the goal while ensuring it avoids the swamp to prevent encountering its associated hazards. This constraint is intended to ensure the agent's safety by avoiding dangerous terrain during the task."
+   },
+   {
+    "tag": "generalize",
+    "prompt": "emantic relevance should be generalized to the same name. Only generalize using object properties explicitly listed in the environment.\nReturn a newline-delimited list of the original feature names, followed by \"->\", followed by either NO CHANGE or a generalized feature name. For example\nfeature_a -> feature_letter\nfeature_b -> feature_letter\nfeature_letter -> feature_letter\nfeature_1 -> NO CHANGE",
+    "reply": "distance_to_goal -> NO CHANGE\ndistance_to_swamp -> NO CHANGE"
+   },
+   {
+    "tag": "mask",
+    "prompt": "e objects the same way, even if only one of them is relevant to the instruction.\nFor example, for the instruction go to a book and the features [\"book_dist\", \"table_dist\", \"chair_dist\"], the minimal set would include only the features that refer specifically to the object mentioned in the instruction.\nProvide your answer as ONLY a single integer. Do not include any surrounding explanation or text.",
+    "reply": "1"
+   },
+   {
+    "tag": "mask",
+    "prompt": "e objects the same way, even if only one of them is relevant to the instruction.\nFor example, for the instruction go to a book and the features [\"book_dist\", \"table_dist\", \"chair_dist\"], the minimal set would include only the features that refer specifically to the object mentioned in the instruction.\nProvide your answer as ONLY a single integer. Do not include any surrounding explanation or text.",
+    "reply": "1"
+   }
+  ],
+  "kind": "personal",
+  "verify": [],
+  "asked": 0
+ },
+ {
+  "world": "lavaland",
+  "scenario": "Personal/Add Only",
+  "seed": 1,
+  "method": "FLEX-V",
+  "score": 0.9439233335915781,
+  "transfer": 0.9374608210488129,
+  "features": [
+   "distance_to_goal",
+   "distance_to_swamp"
+  ],
+  "sources": [
+   "builtin",
+   "lm"
+  ],
+  "theta": [
+   -0.9688,
+   1.1369
+  ],
+  "error": null,
+  "fallbacks": 0,
+  "dropped": 0,
+  "log": [
+   {
+    "tag": "add",
+    "prompt": "(e.g. if distance to goal feature is already in the list, do not give distance to goal again). Ground your answer in visible objects in the scene, and give an answer (only 1 specific answer (e.g. distance to heavy objects)) that we can compute relative to the position of the agent.\nFollow your answer with one newline and at most one sentence of explanation with specific references to the addendum.",
+    "reply": "distance_to_swamp\nThe addendum \"Stay away from the swamp\" requires the agent to know its proximity to the swamp."
+   },
+   {
+    "tag": "codegen",
+    "prompt": "_utils import get_objects_with_property\ndef feature_name(environment, trajectory):\n    ...\n    return feat_val\n```\nPlease ensure the code is executable. Make sure your code is generalizable to new environments. Don't assume you are given any other information about the environment other than what is explicitly specified in the environment config. Do not include any surrounding explanation or text.",
+    "reply": "Feature name: \"distance_to_swamp\"\nFeature code:\n```python\nimport numpy as np\nfrom flexible_features.utils.env_utils import get_objects_with_property\n\ndef distance_to_swamp(environment, trajectory):\n    # Get the positions of all objects with the property \"swamp\"\n    swamp_positions = get_objects_with_property(\"swamp\", environment)\n    \n    # If no swamp is found, return an array with 0.0\n    if not swamp_positions:\n        return np.array([0.0], dtype=np.float64)\n    \n    # Initialize the feature value as a 1-element array\n    swamp_feat = np.zeros(1, dtype=np.float64)\n    \n    # Iterate through the trajectory in steps of 2 (x, y pairs)\n    for i in range(0, len(trajectory) - 1, 2):\n        agent_pos = np.array([trajectory[i], trajectory[i+1]])\n        # Iterate through each swamp object to calculate distance\n        for swamp_pos in swamp_positions:\n            dist = np.linalg.norm(agent_pos - np.array(swamp_pos))\n            swamp_feat[0] += dist\n            \n    # Return the cumulative average distance over the trajectory\n    # This calculates the sum of the average distances to all swamp objects at each timestep\n    return swamp_feat / len(swamp_positions)\n```"
+   },
+   {
+    "tag": "intent",
+    "prompt": "rom the swamp.\n\nExtract the intent behind the human's addendum in at most 2 sentences, explaining the purpose or reasoning behind the addendum. Focus on what the agent needs to achieve and why the human may have said this particular addendum, including any important context or conditions that affect the task. Do not base the explanation on specific locations, as this may change in later scenarios.",
+    "reply": "The agent must navigate to the goal while ensuring it avoids the swamp to prevent encountering its associated hazards. This constraint is intended to ensure the agent's safety by avoiding dangerous terrain during the task."
+   },
+   {
+    "tag": "generalize",
+    "prompt": "emantic relevance should be generalized to the same name. Only generalize using object properties explicitly listed in the environment.\nReturn a newline-delimited list of the original feature names, followed by \"->\", followed by either NO CHANGE or a generalized feature name. For example\nfeature_a -> feature_letter\nfeature_b -> feature_letter\nfeature_letter -> feature_letter\nfeature_1 -> NO CHANGE",
+    "reply": "distance_to_goal -> NO CHANGE\ndistance_to_swamp -> NO CHANGE"
+   },
+   {
+    "tag": "mask",
+    "prompt": "e objects the same way, even if only one of them is relevant to the instruction.\nFor example, for the instruction go to a book and the features [\"book_dist\", \"table_dist\", \"chair_dist\"], the minimal set would include only the features that refer specifically to the object mentioned in the instruction.\nProvide your answer as ONLY a single integer. Do not include any surrounding explanation or text.",
+    "reply": "1"
+   },
+   {
+    "tag": "mask",
+    "prompt": "e objects the same way, even if only one of them is relevant to the instruction.\nFor example, for the instruction go to a book and the features [\"book_dist\", \"table_dist\", \"chair_dist\"], the minimal set would include only the features that refer specifically to the object mentioned in the instruction.\nProvide your answer as ONLY a single integer. Do not include any surrounding explanation or text.",
+    "reply": "1"
+   }
+  ],
+  "kind": "personal",
+  "verify": [],
+  "asked": 0
+ },
+ {
+  "world": "lavaland",
+  "scenario": "Personal/Add+Mask",
+  "seed": 0,
+  "method": "FLEX",
+  "score": 1.0,
+  "transfer": 0.9433628929083051,
+  "features": [
+   "distance_to_goal",
+   "distance_to_swamp"
+  ],
+  "sources": [
+   "builtin",
+   "lm"
+  ],
+  "theta": [
+   -0.8227,
+   0.5188
+  ],
+  "error": null,
+  "fallbacks": 0,
+  "dropped": 0,
+  "log": [
+   {
+    "tag": "add",
+    "prompt": "(e.g. if distance to goal feature is already in the list, do not give distance to goal again). Ground your answer in visible objects in the scene, and give an answer (only 1 specific answer (e.g. distance to heavy objects)) that we can compute relative to the position of the agent.\nFollow your answer with one newline and at most one sentence of explanation with specific references to the addendum.",
+    "reply": "distance_to_swamp\nThe addendum \"Stay away from the swamp\" requires the agent to know the distance to the swamp to avoid it."
+   },
+   {
+    "tag": "codegen",
+    "prompt": "_utils import get_objects_with_property\ndef feature_name(environment, trajectory):\n    ...\n    return feat_val\n```\nPlease ensure the code is executable. Make sure your code is generalizable to new environments. Don't assume you are given any other information about the environment other than what is explicitly specified in the environment config. Do not include any surrounding explanation or text.",
+    "reply": "Feature name: \"distance_to_swamp\"\nFeature code:\n```python\nimport numpy as np\nfrom flexible_features.utils.env_utils import get_objects_with_property\n\ndef distance_to_swamp(environment, trajectory):\n    # returns the position(s) of the object(s) with type \"swamp\"\n    swamp_positions = get_objects_with_property(\"swamp\", environment)\n    \n    if not swamp_positions:\n        return np.array([0.0], dtype=np.float64)\n        \n    # initialize the feature value\n    swamp_feat = np.zeros(1)\n    \n    # iterate through the trajectory\n    for i in range(0, len(trajectory), 2):\n        agent_x = trajectory[i]\n        agent_y = trajectory[i+1]\n        # iterate through the swamp objects\n        for swamp_pos in swamp_positions:\n            # calculate the Euclidean distance between the agent and the swamp object\n            dx = agent_x - swamp_pos[0]\n            dy = agent_y - swamp_pos[1]\n            dist = np.sqrt(dx**2 + dy**2)\n            swamp_feat[0] += dist\n            \n    # return the average distance to the swamp object(s) for each trajectory\n    feature_value = swamp_feat / len(swamp_positions)\n    return feature_value.astype(np.float64)\n```"
+   },
+   {
+    "tag": "intent",
+    "prompt": "rom the swamp.\n\nExtract the intent behind the human's addendum in at most 2 sentences, explaining the purpose or reasoning behind the addendum. Focus on what the agent needs to achieve and why the human may have said this particular addendum, including any important context or conditions that affect the task. Do not base the explanation on specific locations, as this may change in later scenarios.",
+    "reply": "The agent needs to navigate to the goal while avoiding the swamp to ensure it does not encounter hazardous terrain. This addendum serves as a safety constraint to prevent the agent from entering dangerous areas during its task."
+   },
+   {
+    "tag": "generalize",
+    "prompt": "emantic relevance should be generalized to the same name. Only generalize using object properties explicitly listed in the environment.\nReturn a newline-delimited list of the original feature names, followed by \"->\", followed by either NO CHANGE or a generalized feature name. For example\nfeature_a -> feature_letter\nfeature_b -> feature_letter\nfeature_letter -> feature_letter\nfeature_1 -> NO CHANGE",
+    "reply": "distance_to_goal -> NO CHANGE\ndistance_to_swamp -> NO CHANGE"
+   },
+   {
+    "tag": "mask",
+    "prompt": "e objects the same way, even if only one of them is relevant to the instruction.\nFor example, for the instruction go to a book and the features [\"book_dist\", \"table_dist\", \"chair_dist\"], the minimal set would include only the features that refer specifically to the object mentioned in the instruction.\nProvide your answer as ONLY a single integer. Do not include any surrounding explanation or text.",
+    "reply": "1"
+   },
+   {
+    "tag": "mask",
+    "prompt": "e objects the same way, even if only one of them is relevant to the instruction.\nFor example, for the instruction go to a book and the features [\"book_dist\", \"table_dist\", \"chair_dist\"], the minimal set would include only the features that refer specifically to the object mentioned in the instruction.\nProvide your answer as ONLY a single integer. Do not include any surrounding explanation or text.",
+    "reply": "0"
+   },
+   {
+    "tag": "mask",
+    "prompt": "e objects the same way, even if only one of them is relevant to the instruction.\nFor example, for the instruction go to a book and the features [\"book_dist\", \"table_dist\", \"chair_dist\"], the minimal set would include only the features that refer specifically to the object mentioned in the instruction.\nProvide your answer as ONLY a single integer. Do not include any surrounding explanation or text.",
+    "reply": "1"
+   }
+  ],
+  "kind": "personal",
+  "verify": [],
+  "asked": 0
+ },
+ {
+  "world": "lavaland",
+  "scenario": "Personal/Add+Mask",
+  "seed": 0,
+  "method": "FLEX-V",
+  "score": 1.0,
+  "transfer": 0.9433628929083051,
+  "features": [
+   "distance_to_goal",
+   "distance_to_swamp"
+  ],
+  "sources": [
+   "builtin",
+   "lm"
+  ],
+  "theta": [
+   -0.8227,
+   0.5188
+  ],
+  "error": null,
+  "fallbacks": 0,
+  "dropped": 0,
+  "log": [
+   {
+    "tag": "add",
+    "prompt": "(e.g. if distance to goal feature is already in the list, do not give distance to goal again). Ground your answer in visible objects in the scene, and give an answer (only 1 specific answer (e.g. distance to heavy objects)) that we can compute relative to the position of the agent.\nFollow your answer with one newline and at most one sentence of explanation with specific references to the addendum.",
+    "reply": "distance_to_swamp\nThe addendum \"Stay away from the swamp\" requires the agent to know the distance to the swamp to avoid it."
+   },
+   {
+    "tag": "codegen",
+    "prompt": "_utils import get_objects_with_property\ndef feature_name(environment, trajectory):\n    ...\n    return feat_val\n```\nPlease ensure the code is executable. Make sure your code is generalizable to new environments. Don't assume you are given any other information about the environment other than what is explicitly specified in the environment config. Do not include any surrounding explanation or text.",
+    "reply": "Feature name: \"distance_to_swamp\"\nFeature code:\n```python\nimport numpy as np\nfrom flexible_features.utils.env_utils import get_objects_with_property\n\ndef distance_to_swamp(environment, trajectory):\n    # returns the position(s) of the object(s) with type \"swamp\"\n    swamp_positions = get_objects_with_property(\"swamp\", environment)\n    \n    if not swamp_positions:\n        return np.array([0.0], dtype=np.float64)\n        \n    # initialize the feature value\n    swamp_feat = np.zeros(1)\n    \n    # iterate through the trajectory\n    for i in range(0, len(trajectory), 2):\n        agent_x = trajectory[i]\n        agent_y = trajectory[i+1]\n        # iterate through the swamp objects\n        for swamp_pos in swamp_positions:\n            # calculate the Euclidean distance between the agent and the swamp object\n            dx = agent_x - swamp_pos[0]\n            dy = agent_y - swamp_pos[1]\n            dist = np.sqrt(dx**2 + dy**2)\n            swamp_feat[0] += dist\n            \n    # return the average distance to the swamp object(s) for each trajectory\n    feature_value = swamp_feat / len(swamp_positions)\n    return feature_value.astype(np.float64)\n```"
+   },
+   {
+    "tag": "intent",
+    "prompt": "rom the swamp.\n\nExtract the intent behind the human's addendum in at most 2 sentences, explaining the purpose or reasoning behind the addendum. Focus on what the agent needs to achieve and why the human may have said this particular addendum, including any important context or conditions that affect the task. Do not base the explanation on specific locations, as this may change in later scenarios.",
+    "reply": "The agent needs to navigate to the goal while avoiding the swamp to ensure it does not encounter hazardous terrain. This addendum serves as a safety constraint to prevent the agent from entering dangerous areas during its task."
+   },
+   {
+    "tag": "generalize",
+    "prompt": "emantic relevance should be generalized to the same name. Only generalize using object properties explicitly listed in the environment.\nReturn a newline-delimited list of the original feature names, followed by \"->\", followed by either NO CHANGE or a generalized feature name. For example\nfeature_a -> feature_letter\nfeature_b -> feature_letter\nfeature_letter -> feature_letter\nfeature_1 -> NO CHANGE",
+    "reply": "distance_to_goal -> NO CHANGE\ndistance_to_swamp -> NO CHANGE"
+   },
+   {
+    "tag": "mask",
+    "prompt": "e objects the same way, even if only one of them is relevant to the instruction.\nFor example, for the instruction go to a book and the features [\"book_dist\", \"table_dist\", \"chair_dist\"], the minimal set would include only the features that refer specifically to the object mentioned in the instruction.\nProvide your answer as ONLY a single integer. Do not include any surrounding explanation or text.",
+    "reply": "1"
+   },
+   {
+    "tag": "mask",
+    "prompt": "e objects the same way, even if only one of them is relevant to the instruction.\nFor example, for the instruction go to a book and the features [\"book_dist\", \"table_dist\", \"chair_dist\"], the minimal set would include only the features that refer specifically to the object mentioned in the instruction.\nProvide your answer as ONLY a single integer. Do not include any surrounding explanation or text.",
+    "reply": "0"
+   },
+   {
+    "tag": "mask",
+    "prompt": "e objects the same way, even if only one of them is relevant to the instruction.\nFor example, for the instruction go to a book and the features [\"book_dist\", \"table_dist\", \"chair_dist\"], the minimal set would include only the features that refer specifically to the object mentioned in the instruction.\nProvide your answer as ONLY a single integer. Do not include any surrounding explanation or text.",
+    "reply": "1"
+   }
+  ],
+  "kind": "personal",
+  "verify": [],
+  "asked": 0
+ },
+ {
+  "world": "lavaland",
+  "scenario": "Personal/Add+Mask",
+  "seed": 1,
+  "method": "FLEX",
+  "score": 0.9439233335915781,
+  "transfer": 0.9355109337061862,
+  "features": [
+   "distance_to_goal",
+   "distance_to_dangerous_terrain"
+  ],
+  "sources": [
+   "builtin",
+   "lm"
+  ],
+  "theta": [
+   -0.7744,
+   1.0477
+  ],
+  "error": null,
+  "fallbacks": 0,
+  "dropped": 0,
+  "log": [
+   {
+    "tag": "add",
+    "prompt": "(e.g. if distance to goal feature is already in the list, do not give distance to goal again). Ground your answer in visible objects in the scene, and give an answer (only 1 specific answer (e.g. distance to heavy objects)) that we can compute relative to the position of the agent.\nFollow your answer with one newline and at most one sentence of explanation with specific references to the addendum.",
+    "reply": "distance_to_swamp\nThe addendum explicitly instructs the agent to stay away from the swamp."
+   },
+   {
+    "tag": "codegen",
+    "prompt": "_utils import get_objects_with_property\ndef feature_name(environment, trajectory):\n    ...\n    return feat_val\n```\nPlease ensure the code is executable. Make sure your code is generalizable to new environments. Don't assume you are given any other information about the environment other than what is explicitly specified in the environment config. Do not include any surrounding explanation or text.",
+    "reply": "Feature name: \"distance_to_swamp\"\nFeature code:\n```python\nimport numpy as np\nfrom flexible_features.utils.env_utils import get_objects_with_property\n\ndef distance_to_swamp(environment, trajectory):\n    # Get the positions of all objects with the property or type \"swamp\"\n    swamp_positions = get_objects_with_property(\"swamp\", environment)\n    # Initialize the feature value as a numpy array of shape (1,)\n    swamp_feat = np.zeros(1, dtype=np.float64)\n    \n    if len(swamp_positions) == 0:\n        return swamp_feat\n\n    # Iterate through the trajectory in steps of 2 (x, y pairs)\n    for i in range(0, len(trajectory), 2):\n        if i + 1 < len(trajectory):\n            agent_pos = np.array([trajectory[i], trajectory[i+1]])\n            # Iterate through each swamp object found\n            for swamp_pos in swamp_positions:\n                # Calculate the Euclidean distance between the agent and the swamp object\n                dist = np.linalg.norm(agent_pos - np.array(swamp_pos))\n                swamp_feat[0] += dist\n    \n    # Average the cumulative distance over the number of swamp objects\n    swamp_feat[0] /= len(swamp_positions)\n    return swamp_feat\n```"
+   },
+   {
+    "tag": "intent",
+    "prompt": "rom the swamp.\n\nExtract the intent behind the human's addendum in at most 2 sentences, explaining the purpose or reasoning behind the addendum. Focus on what the agent needs to achieve and why the human may have said this particular addendum, including any important context or conditions that affect the task. Do not base the explanation on specific locations, as this may change in later scenarios.",
+    "reply": "The agent must navigate to the goal while ensuring it avoids the swamp to prevent encountering its associated hazards. This constraint is intended to ensure the agent's safety by avoiding dangerous terrain during the task."
+   },
+   {
+    "tag": "generalize",
+    "prompt": "emantic relevance should be generalized to the same name. Only generalize using object properties explicitly listed in the environment.\nReturn a newline-delimited list of the original feature names, followed by \"->\", followed by either NO CHANGE or a generalized feature name. For example\nfeature_a -> feature_letter\nfeature_b -> feature_letter\nfeature_letter -> feature_letter\nfeature_1 -> NO CHANGE",
+    "reply": "distance_to_goal -> NO CHANGE\ndistance_to_swamp -> distance_to_dangerous_terrain"
+   },
+   {
+    "tag": "codegen",
+    "prompt": "_utils import get_objects_with_property\ndef feature_name(environment, trajectory):\n    ...\n    return feat_val\n```\nPlease ensure the code is executable. Make sure your code is generalizable to new environments. Don't assume you are given any other information about the environment other than what is explicitly specified in the environment config. Do not include any surrounding explanation or text.",
+    "reply": "Feature name: \"distance_to_dangerous_terrain\"\nFeature code:\n```python\nimport numpy as np\nfrom flexible_features.utils.env_utils import get_objects_with_property\n\ndef distance_to_dangerous_terrain(environment, trajectory):\n    # Get the positions of all objects with the property \"dangerous_terrain\"\n    dangerous_terrain_pos = get_objects_with_property(\"dangerous_terrain\", environment)\n    \n    # Initialize the feature value as a numpy array of shape (1,)\n    feat_val = np.zeros(1, dtype=np.float64)\n    \n    # If no objects with the property exist, return the zeroed feature\n    if not dangerous_terrain_pos:\n        return feat_val\n    \n    # Iterate through the trajectory in steps of 2 (x, y pairs)\n    for i in range(0, len(trajectory), 2):\n        agent_pos = np.array([trajectory[i], trajectory[i+1]])\n        \n        # Iterate through each object with the property\n        for obj_pos in dangerous_terrain_pos:\n            # Calculate the Euclidean distance between the agent and the object\n            dist = np.linalg.norm(agent_pos - np.array(obj_pos))\n            # Accumulate the distance\n            feat_val += dist\n            \n    # Return the cumulative distance averaged over the number of objects\n    return feat_val / len(dangerous_terrain_pos)\n```"
+   },
+   {
+    "tag": "mask",
+    "prompt": "e objects the same way, even if only one of them is relevant to the instruction.\nFor example, for the instruction go to a book and the features [\"book_dist\", \"table_dist\", \"chair_dist\"], the minimal set would include only the features that refer specifically to the object mentioned in the instruction.\nProvide your answer as ONLY a single integer. Do not include any surrounding explanation or text.",
+    "reply": "1"
+   },
+   {
+    "tag": "mask",
+    "prompt": "e objects the same way, even if only one of them is relevant to the instruction.\nFor example, for the instruction go to a book and the features [\"book_dist\", \"table_dist\", \"chair_dist\"], the minimal set would include only the features that refer specifically to the object mentioned in the instruction.\nProvide your answer as ONLY a single integer. Do not include any surrounding explanation or text.",
+    "reply": "0"
+   },
+   {
+    "tag": "mask",
+    "prompt": "e objects the same way, even if only one of them is relevant to the instruction.\nFor example, for the instruction go to a book and the features [\"book_dist\", \"table_dist\", \"chair_dist\"], the minimal set would include only the features that refer specifically to the object mentioned in the instruction.\nProvide your answer as ONLY a single integer. Do not include any surrounding explanation or text.",
+    "reply": "1"
+   }
+  ],
+  "kind": "personal",
+  "verify": [],
+  "asked": 0
+ },
+ {
+  "world": "lavaland",
+  "scenario": "Personal/Add+Mask",
+  "seed": 1,
+  "method": "FLEX-V",
+  "score": 0.9439233335915781,
+  "transfer": 0.9374608210488129,
+  "features": [
+   "distance_to_goal",
+   "distance_to_swamp"
+  ],
+  "sources": [
+   "builtin",
+   "lm"
+  ],
+  "theta": [
+   -0.9688,
+   1.1369
+  ],
+  "error": null,
+  "fallbacks": 0,
+  "dropped": 0,
+  "log": [
+   {
+    "tag": "add",
+    "prompt": "(e.g. if distance to goal feature is already in the list, do not give distance to goal again). Ground your answer in visible objects in the scene, and give an answer (only 1 specific answer (e.g. distance to heavy objects)) that we can compute relative to the position of the agent.\nFollow your answer with one newline and at most one sentence of explanation with specific references to the addendum.",
+    "reply": "distance_to_swamp\nThe addendum explicitly instructs the agent to stay away from the swamp."
+   },
+   {
+    "tag": "codegen",
+    "prompt": "_utils import get_objects_with_property\ndef feature_name(environment, trajectory):\n    ...\n    return feat_val\n```\nPlease ensure the code is executable. Make sure your code is generalizable to new environments. Don't assume you are given any other information about the environment other than what is explicitly specified in the environment config. Do not include any surrounding explanation or text.",
+    "reply": "Feature name: \"distance_to_swamp\"\nFeature code:\n```python\nimport numpy as np\nfrom flexible_features.utils.env_utils import get_objects_with_property\n\ndef distance_to_swamp(environment, trajectory):\n    # Get the positions of all objects with the property or type \"swamp\"\n    swamp_positions = get_objects_with_property(\"swamp\", environment)\n    # Initialize the feature value as a numpy array of shape (1,)\n    swamp_feat = np.zeros(1, dtype=np.float64)\n    \n    if len(swamp_positions) == 0:\n        return swamp_feat\n\n    # Iterate through the trajectory in steps of 2 (x, y pairs)\n    for i in range(0, len(trajectory), 2):\n        if i + 1 < len(trajectory):\n            agent_pos = np.array([trajectory[i], trajectory[i+1]])\n            # Iterate through each swamp object found\n            for swamp_pos in swamp_positions:\n                # Calculate the Euclidean distance between the agent and the swamp object\n                dist = np.linalg.norm(agent_pos - np.array(swamp_pos))\n                swamp_feat[0] += dist\n    \n    # Average the cumulative distance over the number of swamp objects\n    swamp_feat[0] /= len(swamp_positions)\n    return swamp_feat\n```"
+   },
+   {
+    "tag": "intent",
+    "prompt": "rom the swamp.\n\nExtract the intent behind the human's addendum in at most 2 sentences, explaining the purpose or reasoning behind the addendum. Focus on what the agent needs to achieve and why the human may have said this particular addendum, including any important context or conditions that affect the task. Do not base the explanation on specific locations, as this may change in later scenarios.",
+    "reply": "The agent must navigate to the goal while ensuring it avoids the swamp to prevent encountering its associated hazards. This constraint is intended to ensure the agent's safety by avoiding dangerous terrain during the task."
+   },
+   {
+    "tag": "generalize",
+    "prompt": "emantic relevance should be generalized to the same name. Only generalize using object properties explicitly listed in the environment.\nReturn a newline-delimited list of the original feature names, followed by \"->\", followed by either NO CHANGE or a generalized feature name. For example\nfeature_a -> feature_letter\nfeature_b -> feature_letter\nfeature_letter -> feature_letter\nfeature_1 -> NO CHANGE",
+    "reply": "distance_to_goal -> NO CHANGE\ndistance_to_swamp -> distance_to_dangerous_terrain"
+   },
+   {
+    "tag": "codegen",
+    "prompt": "_utils import get_objects_with_property\ndef feature_name(environment, trajectory):\n    ...\n    return feat_val\n```\nPlease ensure the code is executable. Make sure your code is generalizable to new environments. Don't assume you are given any other information about the environment other than what is explicitly specified in the environment config. Do not include any surrounding explanation or text.",
+    "reply": "Feature name: \"distance_to_dangerous_terrain\"\nFeature code:\n```python\nimport numpy as np\nfrom flexible_features.utils.env_utils import get_objects_with_property\n\ndef distance_to_dangerous_terrain(environment, trajectory):\n    # Get the positions of all objects with the property \"dangerous_terrain\"\n    dangerous_terrain_pos = get_objects_with_property(\"dangerous_terrain\", environment)\n    \n    # Initialize the feature value as a numpy array of shape (1,)\n    feat_val = np.zeros(1, dtype=np.float64)\n    \n    # If no objects with the property exist, return the zeroed feature\n    if not dangerous_terrain_pos:\n        return feat_val\n    \n    # Iterate through the trajectory in steps of 2 (x, y pairs)\n    for i in range(0, len(trajectory), 2):\n        agent_pos = np.array([trajectory[i], trajectory[i+1]])\n        \n        # Iterate through each object with the property\n        for obj_pos in dangerous_terrain_pos:\n            # Calculate the Euclidean distance between the agent and the object\n            dist = np.linalg.norm(agent_pos - np.array(obj_pos))\n            # Accumulate the distance\n            feat_val += dist\n            \n    # Return the cumulative distance averaged over the number of objects\n    return feat_val / len(dangerous_terrain_pos)\n```"
+   },
+   {
+    "tag": "verify",
+    "ll_specific": -92.75,
+    "ll_general": -95.78,
+    "decision": "demos",
+    "kept_generalization": false
+   },
+   {
+    "tag": "mask",
+    "prompt": "e objects the same way, even if only one of them is relevant to the instruction.\nFor example, for the instruction go to a book and the features [\"book_dist\", \"table_dist\", \"chair_dist\"], the minimal set would include only the features that refer specifically to the object mentioned in the instruction.\nProvide your answer as ONLY a single integer. Do not include any surrounding explanation or text.",
+    "reply": "1"
+   },
+   {
+    "tag": "mask",
+    "prompt": "e objects the same way, even if only one of them is relevant to the instruction.\nFor example, for the instruction go to a book and the features [\"book_dist\", \"table_dist\", \"chair_dist\"], the minimal set would include only the features that refer specifically to the object mentioned in the instruction.\nProvide your answer as ONLY a single integer. Do not include any surrounding explanation or text.",
+    "reply": "0"
+   },
+   {
+    "tag": "mask",
+    "prompt": "e objects the same way, even if only one of them is relevant to the instruction.\nFor example, for the instruction go to a book and the features [\"book_dist\", \"table_dist\", \"chair_dist\"], the minimal set would include only the features that refer specifically to the object mentioned in the instruction.\nProvide your answer as ONLY a single integer. Do not include any surrounding explanation or text.",
+    "reply": "1"
+   }
+  ],
+  "kind": "personal",
+  "verify": [
+   {
+    "tag": "verify",
+    "ll_specific": -92.75,
+    "ll_general": -95.78,
+    "decision": "demos",
+    "kept_generalization": false
+   }
+  ],
+  "asked": 0
+ }
+]

@@ -1,0 +1,1202 @@
+[
+ {
+  "op": "add",
+  "scenario": "Add Only",
+  "seed": 5,
+  "init": [
+   "goal"
+  ],
+  "got": [
+   "goal"
+  ],
+  "want": [
+   "goal",
+   "stove"
+  ],
+  "error": true,
+  "contradictory": true
+ },
+ {
+  "op": "add",
+  "scenario": "Add Only",
+  "seed": 6,
+  "init": [
+   "goal"
+  ],
+  "got": [
+   "goal"
+  ],
+  "want": [
+   "goal",
+   "stove"
+  ],
+  "error": true,
+  "contradictory": true
+ },
+ {
+  "op": "add",
+  "scenario": "Add Only",
+  "seed": 7,
+  "init": [
+   "goal"
+  ],
+  "got": [
+   "goal"
+  ],
+  "want": [
+   "goal",
+   "stove"
+  ],
+  "error": true,
+  "contradictory": true
+ },
+ {
+  "op": "add",
+  "scenario": "Gen. Only",
+  "seed": 5,
+  "init": [
+   "goal",
+   "stove"
+  ],
+  "got": [
+   "goal",
+   "stove"
+  ],
+  "want": [
+   "goal",
+   "stove"
+  ],
+  "error": false,
+  "contradictory": false
+ },
+ {
+  "op": "add",
+  "scenario": "Gen. Only",
+  "seed": 6,
+  "init": [
+   "goal",
+   "stove"
+  ],
+  "got": [
+   "goal",
+   "stove"
+  ],
+  "want": [
+   "goal",
+   "stove"
+  ],
+  "error": false,
+  "contradictory": false
+ },
+ {
+  "op": "add",
+  "scenario": "Gen. Only",
+  "seed": 7,
+  "init": [
+   "goal",
+   "stove"
+  ],
+  "got": [
+   "goal",
+   "stove"
+  ],
+  "want": [
+   "goal",
+   "stove"
+  ],
+  "error": false,
+  "contradictory": false
+ },
+ {
+  "op": "add",
+  "scenario": "Mask Only",
+  "seed": 5,
+  "init": [
+   "fridge",
+   "goal",
+   "stove"
+  ],
+  "got": [
+   "fridge",
+   "goal",
+   "stove"
+  ],
+  "want": [
+   "fridge",
+   "goal",
+   "stove"
+  ],
+  "error": false,
+  "contradictory": false
+ },
+ {
+  "op": "add",
+  "scenario": "Mask Only",
+  "seed": 6,
+  "init": [
+   "fridge",
+   "goal",
+   "stove"
+  ],
+  "got": [
+   "fridge",
+   "goal",
+   "stove"
+  ],
+  "want": [
+   "fridge",
+   "goal",
+   "stove"
+  ],
+  "error": false,
+  "contradictory": false
+ },
+ {
+  "op": "add",
+  "scenario": "Mask Only",
+  "seed": 7,
+  "init": [
+   "fridge",
+   "goal",
+   "stove"
+  ],
+  "got": [
+   "fridge",
+   "goal",
+   "stove"
+  ],
+  "want": [
+   "fridge",
+   "goal",
+   "stove"
+  ],
+  "error": false,
+  "contradictory": false
+ },
+ {
+  "op": "add",
+  "scenario": "Add+Gen.",
+  "seed": 5,
+  "init": [
+   "fridge",
+   "goal"
+  ],
+  "got": [
+   "fridge",
+   "goal"
+  ],
+  "want": [
+   "fridge",
+   "goal",
+   "stove"
+  ],
+  "error": true,
+  "contradictory": true
+ },
+ {
+  "op": "add",
+  "scenario": "Add+Gen.",
+  "seed": 6,
+  "init": [
+   "fridge",
+   "goal"
+  ],
+  "got": [
+   "fridge",
+   "goal"
+  ],
+  "want": [
+   "fridge",
+   "goal",
+   "stove"
+  ],
+  "error": true,
+  "contradictory": true
+ },
+ {
+  "op": "add",
+  "scenario": "Add+Gen.",
+  "seed": 7,
+  "init": [
+   "fridge",
+   "goal"
+  ],
+  "got": [
+   "fridge",
+   "goal"
+  ],
+  "want": [
+   "fridge",
+   "goal",
+   "stove"
+  ],
+  "error": true,
+  "contradictory": true
+ },
+ {
+  "op": "add",
+  "scenario": "Add+Mask",
+  "seed": 5,
+  "init": [
+   "fridge",
+   "goal"
+  ],
+  "got": [
+   "fridge",
+   "goal"
+  ],
+  "want": [
+   "fridge",
+   "goal",
+   "stove"
+  ],
+  "error": true,
+  "contradictory": true
+ },
+ {
+  "op": "add",
+  "scenario": "Add+Mask",
+  "seed": 6,
+  "init": [
+   "fridge",
+   "goal"
+  ],
+  "got": [
+   "fridge",
+   "goal"
+  ],
+  "want": [
+   "fridge",
+   "goal",
+   "stove"
+  ],
+  "error": true,
+  "contradictory": true
+ },
+ {
+  "op": "add",
+  "scenario": "Add+Mask",
+  "seed": 7,
+  "init": [
+   "fridge",
+   "goal"
+  ],
+  "got": [
+   "fridge",
+   "goal"
+  ],
+  "want": [
+   "fridge",
+   "goal",
+   "stove"
+  ],
+  "error": true,
+  "contradictory": true
+ },
+ {
+  "op": "add",
+  "scenario": "Mask+Gen.",
+  "seed": 5,
+  "init": [
+   "fridge",
+   "goal",
+   "stove"
+  ],
+  "got": [
+   "fridge",
+   "goal",
+   "stove"
+  ],
+  "want": [
+   "fridge",
+   "goal",
+   "stove"
+  ],
+  "error": false,
+  "contradictory": false
+ },
+ {
+  "op": "add",
+  "scenario": "Mask+Gen.",
+  "seed": 6,
+  "init": [
+   "fridge",
+   "goal",
+   "stove"
+  ],
+  "got": [
+   "fridge",
+   "goal",
+   "stove"
+  ],
+  "want": [
+   "fridge",
+   "goal",
+   "stove"
+  ],
+  "error": false,
+  "contradictory": false
+ },
+ {
+  "op": "add",
+  "scenario": "Mask+Gen.",
+  "seed": 7,
+  "init": [
+   "fridge",
+   "goal",
+   "stove"
+  ],
+  "got": [
+   "fridge",
+   "goal",
+   "stove"
+  ],
+  "want": [
+   "fridge",
+   "goal",
+   "stove"
+  ],
+  "error": false,
+  "contradictory": false
+ },
+ {
+  "op": "add",
+  "scenario": "All Three",
+  "seed": 5,
+  "init": [
+   "fridge",
+   "goal"
+  ],
+  "got": [
+   "fridge",
+   "goal"
+  ],
+  "want": [
+   "fridge",
+   "goal",
+   "stove"
+  ],
+  "error": true,
+  "contradictory": true
+ },
+ {
+  "op": "add",
+  "scenario": "All Three",
+  "seed": 6,
+  "init": [
+   "fridge",
+   "goal"
+  ],
+  "got": [
+   "fridge",
+   "goal"
+  ],
+  "want": [
+   "fridge",
+   "goal",
+   "stove"
+  ],
+  "error": true,
+  "contradictory": true
+ },
+ {
+  "op": "add",
+  "scenario": "All Three",
+  "seed": 7,
+  "init": [
+   "fridge",
+   "goal"
+  ],
+  "got": [
+   "fridge",
+   "goal"
+  ],
+  "want": [
+   "fridge",
+   "goal",
+   "stove"
+  ],
+  "error": true,
+  "contradictory": true
+ },
+ {
+  "op": "generalize",
+  "scenario": "Add Only",
+  "seed": 5,
+  "init": [
+   "goal"
+  ],
+  "got": [
+   "goal"
+  ],
+  "want": [
+   "goal"
+  ],
+  "error": false,
+  "contradictory": false
+ },
+ {
+  "op": "generalize",
+  "scenario": "Add Only",
+  "seed": 6,
+  "init": [
+   "goal"
+  ],
+  "got": [
+   "goal"
+  ],
+  "want": [
+   "goal"
+  ],
+  "error": false,
+  "contradictory": false
+ },
+ {
+  "op": "generalize",
+  "scenario": "Add Only",
+  "seed": 7,
+  "init": [
+   "goal"
+  ],
+  "got": [
+   "goal"
+  ],
+  "want": [
+   "goal"
+  ],
+  "error": false,
+  "contradictory": false
+ },
+ {
+  "op": "generalize",
+  "scenario": "Gen. Only",
+  "seed": 5,
+  "init": [
+   "goal",
+   "stove"
+  ],
+  "got": [
+   "goal",
+   "stove"
+  ],
+  "want": [
+   "goal",
+   "heat_source"
+  ],
+  "error": true,
+  "contradictory": false
+ },
+ {
+  "op": "generalize",
+  "scenario": "Gen. Only",
+  "seed": 6,
+  "init": [
+   "goal",
+   "stove"
+  ],
+  "got": [
+   "goal",
+   "stove"
+  ],
+  "want": [
+   "goal",
+   "heat_source"
+  ],
+  "error": true,
+  "contradictory": false
+ },
+ {
+  "op": "generalize",
+  "scenario": "Gen. Only",
+  "seed": 7,
+  "init": [
+   "goal",
+   "stove"
+  ],
+  "got": [
+   "goal",
+   "stove"
+  ],
+  "want": [
+   "goal",
+   "heat_source"
+  ],
+  "error": true,
+  "contradictory": false
+ },
+ {
+  "op": "generalize",
+  "scenario": "Mask Only",
+  "seed": 5,
+  "init": [
+   "fridge",
+   "goal",
+   "stove"
+  ],
+  "got": [
+   "fridge",
+   "goal",
+   "stove"
+  ],
+  "want": [
+   "fridge",
+   "goal",
+   "stove"
+  ],
+  "error": false,
+  "contradictory": false
+ },
+ {
+  "op": "generalize",
+  "scenario": "Mask Only",
+  "seed": 6,
+  "init": [
+   "fridge",
+   "goal",
+   "stove"
+  ],
+  "got": [
+   "fridge",
+   "goal",
+   "stove"
+  ],
+  "want": [
+   "fridge",
+   "goal",
+   "stove"
+  ],
+  "error": false,
+  "contradictory": false
+ },
+ {
+  "op": "generalize",
+  "scenario": "Mask Only",
+  "seed": 7,
+  "init": [
+   "fridge",
+   "goal",
+   "stove"
+  ],
+  "got": [
+   "fridge",
+   "goal",
+   "stove"
+  ],
+  "want": [
+   "fridge",
+   "goal",
+   "stove"
+  ],
+  "error": false,
+  "contradictory": false
+ },
+ {
+  "op": "generalize",
+  "scenario": "Add+Gen.",
+  "seed": 5,
+  "init": [
+   "fridge",
+   "goal"
+  ],
+  "got": [
+   "fridge",
+   "goal"
+  ],
+  "want": [
+   "fridge",
+   "goal"
+  ],
+  "error": false,
+  "contradictory": false
+ },
+ {
+  "op": "generalize",
+  "scenario": "Add+Gen.",
+  "seed": 6,
+  "init": [
+   "fridge",
+   "goal"
+  ],
+  "got": [
+   "fridge",
+   "goal"
+  ],
+  "want": [
+   "fridge",
+   "goal"
+  ],
+  "error": false,
+  "contradictory": false
+ },
+ {
+  "op": "generalize",
+  "scenario": "Add+Gen.",
+  "seed": 7,
+  "init": [
+   "fridge",
+   "goal"
+  ],
+  "got": [
+   "fridge",
+   "goal"
+  ],
+  "want": [
+   "fridge",
+   "goal"
+  ],
+  "error": false,
+  "contradictory": false
+ },
+ {
+  "op": "generalize",
+  "scenario": "Add+Mask",
+  "seed": 5,
+  "init": [
+   "fridge",
+   "goal"
+  ],
+  "got": [
+   "fridge",
+   "goal"
+  ],
+  "want": [
+   "fridge",
+   "goal"
+  ],
+  "error": false,
+  "contradictory": false
+ },
+ {
+  "op": "generalize",
+  "scenario": "Add+Mask",
+  "seed": 6,
+  "init": [
+   "fridge",
+   "goal"
+  ],
+  "got": [
+   "fridge",
+   "goal"
+  ],
+  "want": [
+   "fridge",
+   "goal"
+  ],
+  "error": false,
+  "contradictory": false
+ },
+ {
+  "op": "generalize",
+  "scenario": "Add+Mask",
+  "seed": 7,
+  "init": [
+   "fridge",
+   "goal"
+  ],
+  "got": [
+   "fridge",
+   "goal"
+  ],
+  "want": [
+   "fridge",
+   "goal"
+  ],
+  "error": false,
+  "contradictory": false
+ },
+ {
+  "op": "generalize",
+  "scenario": "Mask+Gen.",
+  "seed": 5,
+  "init": [
+   "fridge",
+   "goal",
+   "stove"
+  ],
+  "got": [
+   "fridge",
+   "goal",
+   "stove"
+  ],
+  "want": [
+   "fridge",
+   "goal",
+   "heat_source"
+  ],
+  "error": true,
+  "contradictory": false
+ },
+ {
+  "op": "generalize",
+  "scenario": "Mask+Gen.",
+  "seed": 6,
+  "init": [
+   "fridge",
+   "goal",
+   "stove"
+  ],
+  "got": [
+   "fridge",
+   "goal",
+   "stove"
+  ],
+  "want": [
+   "fridge",
+   "goal",
+   "heat_source"
+  ],
+  "error": true,
+  "contradictory": false
+ },
+ {
+  "op": "generalize",
+  "scenario": "Mask+Gen.",
+  "seed": 7,
+  "init": [
+   "fridge",
+   "goal",
+   "stove"
+  ],
+  "got": [
+   "fridge",
+   "goal",
+   "stove"
+  ],
+  "want": [
+   "fridge",
+   "goal",
+   "heat_source"
+  ],
+  "error": true,
+  "contradictory": false
+ },
+ {
+  "op": "generalize",
+  "scenario": "All Three",
+  "seed": 5,
+  "init": [
+   "fridge",
+   "goal"
+  ],
+  "got": [
+   "fridge",
+   "goal"
+  ],
+  "want": [
+   "fridge",
+   "goal"
+  ],
+  "error": false,
+  "contradictory": false
+ },
+ {
+  "op": "generalize",
+  "scenario": "All Three",
+  "seed": 6,
+  "init": [
+   "fridge",
+   "goal"
+  ],
+  "got": [
+   "fridge",
+   "goal"
+  ],
+  "want": [
+   "fridge",
+   "goal"
+  ],
+  "error": false,
+  "contradictory": false
+ },
+ {
+  "op": "generalize",
+  "scenario": "All Three",
+  "seed": 7,
+  "init": [
+   "fridge",
+   "goal"
+  ],
+  "got": [
+   "fridge",
+   "goal"
+  ],
+  "want": [
+   "fridge",
+   "goal"
+  ],
+  "error": false,
+  "contradictory": false
+ },
+ {
+  "op": "mask",
+  "scenario": "Add Only",
+  "seed": 5,
+  "init": [
+   "goal"
+  ],
+  "got": [
+   "goal"
+  ],
+  "want": [
+   "goal"
+  ],
+  "error": false,
+  "contradictory": false
+ },
+ {
+  "op": "mask",
+  "scenario": "Add Only",
+  "seed": 6,
+  "init": [
+   "goal"
+  ],
+  "got": [
+   "goal"
+  ],
+  "want": [
+   "goal"
+  ],
+  "error": false,
+  "contradictory": false
+ },
+ {
+  "op": "mask",
+  "scenario": "Add Only",
+  "seed": 7,
+  "init": [
+   "goal"
+  ],
+  "got": [
+   "goal"
+  ],
+  "want": [
+   "goal"
+  ],
+  "error": false,
+  "contradictory": false
+ },
+ {
+  "op": "mask",
+  "scenario": "Gen. Only",
+  "seed": 5,
+  "init": [
+   "goal",
+   "stove"
+  ],
+  "got": [
+   "goal"
+  ],
+  "want": [
+   "goal",
+   "stove"
+  ],
+  "error": true,
+  "contradictory": false
+ },
+ {
+  "op": "mask",
+  "scenario": "Gen. Only",
+  "seed": 6,
+  "init": [
+   "goal",
+   "stove"
+  ],
+  "got": [
+   "goal"
+  ],
+  "want": [
+   "goal",
+   "stove"
+  ],
+  "error": true,
+  "contradictory": false
+ },
+ {
+  "op": "mask",
+  "scenario": "Gen. Only",
+  "seed": 7,
+  "init": [
+   "goal",
+   "stove"
+  ],
+  "got": [
+   "goal"
+  ],
+  "want": [
+   "goal",
+   "stove"
+  ],
+  "error": true,
+  "contradictory": false
+ },
+ {
+  "op": "mask",
+  "scenario": "Mask Only",
+  "seed": 5,
+  "init": [
+   "fridge",
+   "goal",
+   "stove"
+  ],
+  "got": [
+   "goal"
+  ],
+  "want": [
+   "goal",
+   "stove"
+  ],
+  "error": true,
+  "contradictory": false
+ },
+ {
+  "op": "mask",
+  "scenario": "Mask Only",
+  "seed": 6,
+  "init": [
+   "fridge",
+   "goal",
+   "stove"
+  ],
+  "got": [
+   "goal"
+  ],
+  "want": [
+   "goal",
+   "stove"
+  ],
+  "error": true,
+  "contradictory": false
+ },
+ {
+  "op": "mask",
+  "scenario": "Mask Only",
+  "seed": 7,
+  "init": [
+   "fridge",
+   "goal",
+   "stove"
+  ],
+  "got": [
+   "goal"
+  ],
+  "want": [
+   "goal",
+   "stove"
+  ],
+  "error": true,
+  "contradictory": false
+ },
+ {
+  "op": "mask",
+  "scenario": "Add+Gen.",
+  "seed": 5,
+  "init": [
+   "fridge",
+   "goal"
+  ],
+  "got": [
+   "goal"
+  ],
+  "want": [
+   "fridge",
+   "goal"
+  ],
+  "error": true,
+  "contradictory": false
+ },
+ {
+  "op": "mask",
+  "scenario": "Add+Gen.",
+  "seed": 6,
+  "init": [
+   "fridge",
+   "goal"
+  ],
+  "got": [
+   "goal"
+  ],
+  "want": [
+   "fridge",
+   "goal"
+  ],
+  "error": true,
+  "contradictory": false
+ },
+ {
+  "op": "mask",
+  "scenario": "Add+Gen.",
+  "seed": 7,
+  "init": [
+   "fridge",
+   "goal"
+  ],
+  "got": [
+   "goal"
+  ],
+  "want": [
+   "fridge",
+   "goal"
+  ],
+  "error": true,
+  "contradictory": false
+ },
+ {
+  "op": "mask",
+  "scenario": "Add+Mask",
+  "seed": 5,
+  "init": [
+   "fridge",
+   "goal"
+  ],
+  "got": [
+   "goal"
+  ],
+  "want": [
+   "goal"
+  ],
+  "error": false,
+  "contradictory": false
+ },
+ {
+  "op": "mask",
+  "scenario": "Add+Mask",
+  "seed": 6,
+  "init": [
+   "fridge",
+   "goal"
+  ],
+  "got": [
+   "goal"
+  ],
+  "want": [
+   "goal"
+  ],
+  "error": false,
+  "contradictory": false
+ },
+ {
+  "op": "mask",
+  "scenario": "Add+Mask",
+  "seed": 7,
+  "init": [
+   "fridge",
+   "goal"
+  ],
+  "got": [
+   "goal"
+  ],
+  "want": [
+   "goal"
+  ],
+  "error": false,
+  "contradictory": false
+ },
+ {
+  "op": "mask",
+  "scenario": "Mask+Gen.",
+  "seed": 5,
+  "init": [
+   "fridge",
+   "goal",
+   "stove"
+  ],
+  "got": [
+   "goal"
+  ],
+  "want": [
+   "goal",
+   "stove"
+  ],
+  "error": true,
+  "contradictory": false
+ },
+ {
+  "op": "mask",
+  "scenario": "Mask+Gen.",
+  "seed": 6,
+  "init": [
+   "fridge",
+   "goal",
+   "stove"
+  ],
+  "got": [
+   "goal"
+  ],
+  "want": [
+   "goal",
+   "stove"
+  ],
+  "error": true,
+  "contradictory": false
+ },
+ {
+  "op": "mask",
+  "scenario": "Mask+Gen.",
+  "seed": 7,
+  "init": [
+   "fridge",
+   "goal",
+   "stove"
+  ],
+  "got": [
+   "goal"
+  ],
+  "want": [
+   "goal",
+   "stove"
+  ],
+  "error": true,
+  "contradictory": false
+ },
+ {
+  "op": "mask",
+  "scenario": "All Three",
+  "seed": 5,
+  "init": [
+   "fridge",
+   "goal"
+  ],
+  "got": [
+   "goal"
+  ],
+  "want": [
+   "goal"
+  ],
+  "error": false,
+  "contradictory": false
+ },
+ {
+  "op": "mask",
+  "scenario": "All Three",
+  "seed": 6,
+  "init": [
+   "fridge",
+   "goal"
+  ],
+  "got": [
+   "goal"
+  ],
+  "want": [
+   "goal"
+  ],
+  "error": false,
+  "contradictory": false
+ },
+ {
+  "op": "mask",
+  "scenario": "All Three",
+  "seed": 7,
+  "init": [
+   "fridge",
+   "goal"
+  ],
+  "got": [
+   "goal"
+  ],
+  "want": [
+   "goal"
+  ],
+  "error": false,
+  "contradictory": false
+ }
+]
