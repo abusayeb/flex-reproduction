@@ -1,4 +1,7 @@
+
 # FLEX reproduction + FLEX-V
+
+**Paper PDF:** [Read the full paper (arXiv:2610.28893)](https://arxiv.org/pdf/2610.28893).
 
 This is my code for reproducing the FLEX paper, *Flexible Language-Guided Representation
 Editing for Adaptive Robot Behavior* (Lee, Dennler, Sucholutsky, Bobu, CoRL 2026,
