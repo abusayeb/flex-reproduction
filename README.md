@@ -27,6 +27,36 @@ The requirements are only numpy, scipy, matplotlib and pytest. `main.py` takes a
 
 You do not need Ollama or any API key. The `oracle` backend acts like a perfect LLM, and all the replies I got from the real models (Gemma 4 26B, Qwen 2.5 7B and 14B) are saved in `cache/`, so those runs just read from the cache.
 
+## Running the real LLMs (without the cache)
+
+If a reply is not in `cache/`, the code asks the model through Ollama and saves the reply there, so the next run reads it from the cache. For this, Ollama has to be installed and running.
+
+1. Install Ollama from [ollama.com/download](https://ollama.com/download) (on macOS you can also use `brew install ollama`).
+2. Start it and keep this terminal open:
+
+   ```bash
+   ollama serve
+   ```
+
+3. In a second terminal, download the models (Gemma 4 26B is about 16 GB):
+
+   ```bash
+   ollama pull gemma4:26b
+   ollama pull qwen2.5:7b-instruct
+   ollama pull qwen2.5:14b-instruct
+   ```
+
+4. Move the saved replies away, then run as usual:
+
+   ```bash
+   mv cache cache_saved
+   python main.py op_errors table2
+   ```
+
+Part 2 (`op_errors`) uses all three models and Part 3 (`table2`) uses only Gemma 4. Parts 0, 1 and 4 do not use a real LLM.
+
+If Ollama is not running or a model is missing, the code stops at once and says what to do. A run from scratch takes several hours on a laptop, and LLM replies can change a little between runs, so some numbers may show `MISMATCH`. To go back to my saved replies, run `rm -r cache && mv cache_saved cache`.
+
 `main.py` runs everything in this order:
 
 - Part 0 (`basics`): checks the IRL alone with fixed features, no LLM involved

@@ -1,6 +1,7 @@
 import hashlib
 import json
 import os
+import sys
 import time
 import urllib.request
 from flex.config import CACHE_DIR, LLM_TIMEOUT, OLLAMA_HOST
@@ -32,6 +33,8 @@ class LLM:
             for line in cache_file.read_text().splitlines():
                 record = json.loads(line)
                 self.cache[record['key']] = record['reply']
+        elif cache_file:
+            print(f'  No saved replies for {self.name}: asking the model, replies go to {cache_file.name}')
 
     def chat(self, messages, tag='', info=None):
         # the cache key is a hash of the model, temperature and messages
@@ -45,7 +48,7 @@ class LLM:
         self.calls.append((tag, False))
         self.cache[key] = reply
         if self.cache_file:
-            self.cache_file.parent.mkdir(exist_ok=True)
+            self.cache_file.parent.mkdir(parents=True, exist_ok=True)
             with self.cache_file.open('a') as f:
                 record = {'key': key, 'tag': tag, 'messages': messages, 'reply': reply}
                 f.write(json.dumps(record) + '\n')
@@ -55,9 +58,25 @@ class Ollama(LLM):
     def __init__(self, model, **kwargs):
         self.model = model
         self.name = f'ollama:{model}'
+        self.checked = False
         super().__init__(**kwargs)
 
+    def check_server(self):
+        # stop with a clear message; otherwise every failed call would be counted as an LLM error
+        try:
+            with urllib.request.urlopen(f'{OLLAMA_HOST}/api/tags', timeout=10) as response:
+                models = [m['name'] for m in json.loads(response.read())['models']]
+        except Exception:
+            sys.exit(f'A reply for {self.name} is not in cache/ and Ollama is not running at {OLLAMA_HOST}.\n'
+                     f'Start it with "ollama serve", then run again.')
+        if self.model not in models and self.model + ':latest' not in models:
+            sys.exit(f'A reply for {self.name} is not in cache/ and the model is not installed.\n'
+                     f'Install it with "ollama pull {self.model}", then run again.')
+        self.checked = True
+
     def reply(self, messages):
+        if not self.checked:
+            self.check_server()
         payload = {'model': self.model, 'messages': messages, 'stream': False,
                    'options': {'temperature': self.temperature}}
         return post_json(f'{OLLAMA_HOST}/api/chat', payload, {})['message']['content']
