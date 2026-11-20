@@ -12,7 +12,7 @@ The report is sent separately as a PDF.
 
 Python 3.10 or newer is needed. I have used Python 3.11.
 
-Create and activate a virtual environment, then install the dependencies:
+Cloning the repo, create and activate a virtual environment, then install the dependencies:
 
 ```bash
 git clone https://github.com/abusayeb/flex-reproduction.git
