@@ -15,6 +15,8 @@ Python 3.10 or newer is needed. I have used Python 3.11.
 Create and activate a virtual environment, then install the dependencies:
 
 ```bash
+git clone https://github.com/abusayeb/flex-reproduction.git
+cd flex-reproduction
 python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
